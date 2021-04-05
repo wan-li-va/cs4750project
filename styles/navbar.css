@@ -1,0 +1,19 @@
+.paw {
+    margin: 1vw 2vw 1vw 0.5vw;
+}
+
+.navbar-nav {
+    position: absolute;
+    right: 3vw;
+    align-items: center;
+    justify-content: center;
+    top: 2.5vw;
+}
+
+.login {
+    margin-left: 2vw;
+}
+
+.nav-link {
+    margin-right: 1vw;
+}
