@@ -17,7 +17,7 @@
 $hostname = 'usersrv01.cs.virginia.edu';
 
 // database name
-$dbname = 'vy5br_';
+$dbname = 'vy5br_purrfect';
 
 // database credentials
 $username = 'vy5br';
