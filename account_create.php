@@ -23,49 +23,50 @@
   
     if ($_SERVER["REQUEST_METHOD"] == "POST") 
     {
-      //creating the user in the database
-      $user = $_POST['username1'];
-      $pass = password_hash($_POST['pass1'], PASSWORD_BCRYPT);
-      $first = $_POST['first_name'];
-      $last = $_POST['last_name'];
-      $email = $_POST['Email1'];
-      $phone = (int)$_POST['phone'];
-      
-      $query = "SELECT * FROM login WHERE username = :username";
-      
-      $statement = $db->prepare($query); 
-      $statement->bindParam(':user', $user);
-      $statement->execute();
-      $results = $statement->fetchAll();
-      $check = sizeof($results);
-      $statement->closecursor();
+        //creating the user in the database
+        $user = $_POST['username1'];
+        // $pass = password_hash($_POST['pass1'], PASSWORD_BCRYPT);
+        $pass = $_POST['pass1'];
+        $first = $_POST['first_name'];
+        $last = $_POST['last_name'];
+        $email = $_POST['Email1'];
+        $phone = (int)$_POST['phone'];
 
-      //making sure that the user doesn't exist in the database already
-      if ($check == 0)
-      {
+        $query = "SELECT * FROM login WHERE username = :username";
         
-        $_POST['taken'] = 0;
-        $query = "INSERT INTO users (username, role, first_name, last_name, email_address, phone_num) 
-            VALUES (:username, :role, :first_name, :last_name, :email_address, :phone_num)";
-        $statement = $db->prepare($query);
-        $statement->bindValue(':username', $user);
-        $statement->bindValue(':role', "guest");
-        $statement->bindValue(':first_name', $first);
-        $statement->bindValue(':last_name', $last);
-        $statement->bindValue(':email_address', $email);
-        $statement->bindValue(':phone_num', $phone);
+        $statement = $db->prepare($query); 
+        $statement->bindParam(':username', $user);
         $statement->execute();
-        $statement->closeCursor();
+        $results = $statement->fetchAll();
+        $check = sizeof($results);
+        $statement->closecursor();
 
-        $query = "INSERT INTO login (username, password) VALUES (:username, :password)";
-        $statement = $db->prepare($query);
-        $statement->bindValue(':username', $username);
-        $statement->bindValue(':password', $password);
-        $statement->execute();
-        $statement->closeCursor();
+        //making sure that the user doesn't exist in the database already
+        if ($check == 0)
+        {
+            
+            $_POST['taken'] = 0;
+            $query = "INSERT INTO users (username, role, first_name, last_name, email_address, phone_num) 
+                VALUES (:username, :role, :first_name, :last_name, :email_address, :phone_num)";
+            $statement = $db->prepare($query);
+            $statement->bindValue(':username', $user);
+            $statement->bindValue(':role', 'guest');
+            $statement->bindValue(':first_name', $first);
+            $statement->bindValue(':last_name', $last);
+            $statement->bindValue(':email_address', $email);
+            $statement->bindValue(':phone_num', $phone);
+            $statement->execute();
+            $statement->closeCursor();
 
-        
-      }  
+            $query = "INSERT INTO login (username, password) VALUES (:username, :password)";
+            $statement = $db->prepare($query);
+            $statement->bindValue(':username', $user);
+            $statement->bindValue(':password', $pass);
+            $statement->execute();
+            $statement->closeCursor();
+
+            
+        }  
 
     }     
    
@@ -93,7 +94,7 @@
                         <span class="error_message" id="msg_pass"></span>
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputPassword1">Re-enter Password</label>
+                        <label for="exampleInputPassword2">Re-enter Password</label>
                         <input type="password" class="form-control" name="pass2" id="pass2" placeholder="Password" >
                     </div>
 
@@ -116,7 +117,7 @@
                     <div class="form-group">
                         <label for="exampleInputEmail1">Email address</label>
                         <input type="email" class="form-control" name="Email1" id="Email1" placeholder="Enter email" 
-                            value="<?php if(!empty($user)) echo $_POST['email']?>">
+                            value="<?php if(!empty($user)) echo $_POST['Email1']?>">
                         <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                         <span class="error_message" id="msg_email"></span>
                     </div>
