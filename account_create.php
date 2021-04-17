@@ -61,7 +61,8 @@
             $query = "INSERT INTO login (username, password) VALUES (:username, :password)";
             $statement = $db->prepare($query);
             $statement->bindValue(':username', $user);
-            $statement->bindValue(':password', $pass);
+            $hashed_password = password_hash($pass, PASSWORD_BCRYPT);
+            $statement->bindValue(':password', $hashed_password);
             $statement->execute();
             $statement->closeCursor();
 
