@@ -9,12 +9,9 @@
         <img class="paw" src="https://pngimg.com/uploads/paw/paw_PNG21.png" height="80vw">
         <title class="navbar-brand" href="home.php" style= "font-size:45px">Purrfect Pets</title>
         <style type="text/css">
-            h1	{font-family: 'Rubik', Arial;
-                }
-            a {font-family: 'Rubik', Arial;
-            }
-            title {font-family: 'Rubik', Arial;
-            }
+            h1	{font-family: 'Rubik', Arial;}
+            a {font-family: 'Rubik', Arial;}
+            title {font-family: 'Rubik', Arial;}
         </style>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
