@@ -19,13 +19,40 @@
     <!-- ICON  -->
     <link rel="shortcut icon" href="https://media2.giphy.com/media/n9wqJ8gTR9lQnXTvf3/giphy_s.gif" type="image/ico" />
     <!-- EXTERNAL CSS -->
-    <link href="./styles/home.css" rel="stylesheet" type="text/css" />
+    <link href="./styles/style.css" rel="stylesheet" type="text/css" />
 </head>
 
 <?php include "./navbar.html" ?>
 
 <body>
-    <div class="body">
-        <img class="mainimg" src="https://i.pinimg.com/originals/11/28/af/1128afd21e1994b69a36f9688248a032.gif">
-    </div>
+    <body>
+          <div class="jumbotron">
+            <div class="container">
+                <center>
+              <h1 class="display-4">Pets Available for Adoption Today</h1>
+              <a class="btn btn-lg" href="" role="button">Find a Dog</a>
+              <a class="btn btn-lg" href="" role="button">Find a Cat</a>
+                </center>
+            </div>
+          </div>
+          <div class="container">
+            <div class="row">
+              <div class="col-sm" style="text-align:center">
+                <img src="https://www.humanesociety.org/sites/default/files/styles/1240x698/public/2020-07/kitten-510651.jpg?h=f54c7448&itok=ZhplzyJ9" style="width:300px;">
+                <h1 class="display-6">Bell</h1>
+                <a href="">Learn More</a>
+                </div>
+                <div class="col-sm" style="text-align:center">
+                <img src="https://www.humanesociety.org/sites/default/files/styles/1240x698/public/2020-07/kitten-510651.jpg?h=f54c7448&itok=ZhplzyJ9" style="width:300px;">
+                <h1 class="display-6">Bell</h1>
+                <a href="">Learn More</a>
+                </div>
+                <div class="col-sm" style="text-align:center">
+                <img src="https://www.humanesociety.org/sites/default/files/styles/1240x698/public/2020-07/kitten-510651.jpg?h=f54c7448&itok=ZhplzyJ9" style="width:300px;">
+                <h1 class="display-6">Bell</h1>
+                <a href="">Learn More</a>
+                </div>
+            </div>
+          </div>
+    </body>
 </body>
