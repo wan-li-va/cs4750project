@@ -31,22 +31,22 @@
     <div class="body">
         
     <h1> Send us a question! </h1>
-    <div class="form-group">
-                    <label>Name</label>
-                    <input type="text" class="form-control" id="full_name" placeholder="Your name">
+    <div class="form-group" method="POST" action="send_contact.php">
+                    <label for="Name">Name</label>
+                    <input type="text" class="form-control" id="Name" placeholder="Your name">
                 </div>
                 <div class="form-group">
-                    <label>Email address</label>
+                    <label for="Email">Email address</label>
                     <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Email">
                 </div>
                 <div class="form-group">
-                    <label>Subject</label>
-                    <input type="email" class="form-control" id="subject" aria-describedby="emailHelp" placeholder="Subject">
+                    <label for="Subject">Subject</label>
+                    <input type="Subject" class="form-control" id="subject" aria-describedby="emailHelp" placeholder="Subject">
                 </div>
                 <div class="form-group">
-                    <label>Your Message</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    <label for="Message">Your Message</label>
+                    <textarea class="form-control" id="Message" rows="3"></textarea>
                 </div>
-                <input type="submit" class="btn btn-lg"></button>
+                <button type="submit" class="btn btn-lg">Submit</button>
     </div>
 </body>
