@@ -37,7 +37,7 @@
                 <!-- LOG IN BUTTON, REDIRECTS TO LOGIN PAGE -->
                 <?php
                 //checks to see if user is logged in
-                    if (!isset($_SESSION['user'])){
+                    if (isset($_SESSION['user'])){
 
                 ?>
                 <li class="nav-item">
