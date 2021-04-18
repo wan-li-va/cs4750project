@@ -39,9 +39,6 @@
                     <a class="nav-link" href="settings.php">Settings</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="profile.php">Profile</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" href="contact.php">Contact Us</a>
                 </li>
                 <!-- LOG IN BUTTON, REDIRECTS TO LOGIN PAGE -->
