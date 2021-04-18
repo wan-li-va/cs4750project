@@ -39,7 +39,7 @@
     mysqli_connect_error());
     return null;
     }?>
-
+<!-- 
     <table cellspacing='4' cellpadding='4'>
         <tr>
             <th>Name</th>
@@ -54,39 +54,85 @@
             <th>Fosterable</th>
             <th>Notes</th>
             <th>Image</th>
-        </tr>
+        </tr> -->
 
     <?php
     // Form the SQL query (a SELECT query)
     $sql="SELECT * FROM pets ORDER BY name";
     $result = mysqli_query($con,$sql);
     // Print the data from the table row by row
-    while($row = mysqli_fetch_array($result)) {
-        echo "<td>" . $row['name'] . "</td>";
-        echo "<td>" . $row['dob'] . "</td>";
-        echo "<td>" . $row['sex'] . "</td>";
-        echo "<td>" . $row['type_of_animal'] . "</td>";
-        echo "<td>" . $row['color'] . "</td>";
-        echo "<td>" . $row['breed'] . "</td>";
-        echo "<td>" . $row['is_vaccinated'] . "</td>";
-        echo "<td>" . $row['is_spayed_neutered'] . "</td>";
-        echo "<td>" . $row['shelter_name'] . "</td>";
-        echo "<td>" . $row['is_adoptable'] . "</td>";
-        echo "<td>" . $row['is_fosterable'] . "</td>";
-        echo "<td>" . $row['notes'] . "</td>";
-        echo "<td>" . $row['notes'] . "</td>";
-        echo "</tr>";
-    }
+    // while($row = mysqli_fetch_array($result)) {
+    //     echo "<td>" . $row['name'] . "</td>";
+    //     echo "<td>" . $row['dob'] . "</td>";
+    //     echo "<td>" . $row['sex'] . "</td>";
+    //     echo "<td>" . $row['type_of_animal'] . "</td>";
+    //     echo "<td>" . $row['color'] . "</td>";
+    //     echo "<td>" . $row['breed'] . "</td>";
+    //     echo "<td>" . $row['is_vaccinated'] . "</td>";
+    //     echo "<td>" . $row['is_spayed_neutered'] . "</td>";
+    //     echo "<td>" . $row['shelter_name'] . "</td>";
+    //     echo "<td>" . $row['is_adoptable'] . "</td>";
+    //     echo "<td>" . $row['is_fosterable'] . "</td>";
+    //     echo "<td>" . $row['notes'] . "</td>";
+    //     echo "<td>" . $row['notes'] . "</td>";
+    //     echo "</tr>";
+    // }
+    
+    $output="";
+    $exeQuery = mysqli_query($con,$sql);
+
+    $output="<h2>Welcome to Modern Business
+            <div class='container'>
+            <div class='row'>";
+
+    while($row = mysqli_fetch_array($exeQuery)) {
+        // $name = $row['name'];
+        // $desciption = $row['desciption'];
+        // $ephoto = $row['ephoto'];
+        echo  "<div class='card'>";
+        echo  "<div class='card-body'>"; 
+        echo  $name =  $row['name'];
+        echo $dob = $row['dob'];
+        echo $sex =  $row['sex'] ;
+        echo $type = $row['type_of_animal'];
+        echo $color = $row['color'];
+        echo $breed = $row['breed'];
+        echo $vax = $row['is_vaccinated'];
+        echo $spayed = $row['is_spayed_neutered'];
+        echo $shelter = $row['shelter_name'];
+        echo $adopt = $row['is_adoptable'];
+        echo $foster = $row['is_fosterable'];
+        echo $notes = $row['notes'];
+        echo  "</div>";
+        echo  "</div>";
+    
+    }    
+  
+    // $name =  $row['name'];
+    //     $dob = $row['dob'];
+    //     $sex =  $row['sex'] ;
+    //     $type = $row['type_of_animal'] ;
+    //     $color = $row['color'] ;
+    //     $breed = $row['breed'];
+    //     $vax = $row['is_vaccinated'];
+    //     $spayed = $row['is_spayed_neutered'];
+    //     $shelter = $row['shelter_name'];
+    //     $adopt = $row['is_adoptable'];
+    //     $foster = $row['is_fosterable'];
+    //     $notes = $row['notes'];
+    
     mysqli_close($con);
     ?>
-    </table>
+
+    
+    <!-- </table>
     <div class="card" style="width: 18rem;">
     <img class="card-img-top" src="..." alt="Card image cap">
     <div class="card-body">
     <h5 class="card-title">Card title</h5>
     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
     <a href="#" class="btn btn-primary">Go somewhere</a>
-    </div>
+    </div> -->
 
     
 </div>
