@@ -38,17 +38,17 @@
           <div class="container">
             <div class="row">
               <div class="col-sm" style="text-align:center">
-                <img src="https://www.humanesociety.org/sites/default/files/styles/1240x698/public/2020-07/kitten-510651.jpg?h=f54c7448&itok=ZhplzyJ9" style="width:300px;">
+                <img src="https://www.humanesociety.org/sites/default/files/styles/1240x698/public/2020-07/kitten-510651.jpg?h=f54c7448&itok=ZhplzyJ9" style="width:300px; border:10px solid #efc164">
                 <h1 class="display-6">Bell</h1>
                 <a href="">Learn More</a>
                 </div>
                 <div class="col-sm" style="text-align:center">
-                <img src="https://www.humanesociety.org/sites/default/files/styles/1240x698/public/2020-07/kitten-510651.jpg?h=f54c7448&itok=ZhplzyJ9" style="width:300px;">
+                <img src="https://www.humanesociety.org/sites/default/files/styles/1240x698/public/2020-07/kitten-510651.jpg?h=f54c7448&itok=ZhplzyJ9" style="width:300px; border:10px solid #efc164">
                 <h1 class="display-6">Bell</h1>
                 <a href="">Learn More</a>
                 </div>
                 <div class="col-sm" style="text-align:center">
-                <img src="https://www.humanesociety.org/sites/default/files/styles/1240x698/public/2020-07/kitten-510651.jpg?h=f54c7448&itok=ZhplzyJ9" style="width:300px;">
+                <img src="https://www.humanesociety.org/sites/default/files/styles/1240x698/public/2020-07/kitten-510651.jpg?h=f54c7448&itok=ZhplzyJ9" style="width:300px; border:10px solid #efc164">
                 <h1 class="display-6">Bell</h1>
                 <a href="">Learn More</a>
                 </div>
