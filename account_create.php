@@ -66,7 +66,10 @@
             $statement->execute();
             $statement->closeCursor();
 
-            header("Location: login.php");
+            echo "<script>
+                alert('Account Created');
+                window.location.href='home.php';
+                </script>";
         }  
 
     }     

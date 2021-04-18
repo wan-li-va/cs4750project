@@ -10,7 +10,10 @@
             }     
         session_destroy();
         }
-        header('refresh:0; url=home.php');
+        echo "<script>
+                alert('Logged out');
+                window.location.href='home.php';
+                </script>";
 
     }
 ?>

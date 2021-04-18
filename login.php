@@ -49,14 +49,10 @@ if(isset($_POST['submit'])){
             header("Location: home.php");
           } 
           else{
-            echo "That's the wrong password. Go back and try again.";
+            echo "<div class=\"text-center\">That's the wrong password. Go back and try again.</div>";
           }
         }
     }
-      else{
-        echo "This account doesn't exist.";
-        header("Location: account_create.php");
-        }
 }
     
     ?>
@@ -80,6 +76,11 @@ if(isset($_POST['submit'])){
                         </div>
 
                         </form>
+                    </div>
+                    
+                    <div class="text-center">
+                      <h5>OR</h5>
+                          <a href="account_create.php" class="btn btn-primary py-3 px-5">Create an Account </a>
                     </div>
                 </div>
               </div>

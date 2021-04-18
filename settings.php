@@ -63,7 +63,10 @@
             $statement->execute();
             $statement->closeCursor();
 
-            header("Location: home.php");
+            echo "<script>
+                alert('Settings Changed');
+                window.location.href='home.php';
+                </script>";
         }
      
  

@@ -63,7 +63,10 @@
                 $statement->execute();
                 $statement->closeCursor();
                 $_SESSION["pass_error"] = "";
-                header("Location: home.php");
+                echo "<script>
+                alert('Password Changed');
+                window.location.href='home.php';
+                </script>";
             }
         }
         //shows the error message
