@@ -29,7 +29,6 @@
 
 <body>
     <div class="body">
-        
     <h1> Send us a question! </h1>
     <div class="form-group">
                     <label for="formGroupExampleInput">Name</label>
