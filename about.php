@@ -19,7 +19,7 @@
     <!-- ICON  -->
     <link rel="shortcut icon" href="https://media2.giphy.com/media/n9wqJ8gTR9lQnXTvf3/giphy_s.gif" type="image/ico" />
     <!-- EXTERNAL CSS -->
-    <link href="./styles/home.css" rel="stylesheet" type="text/css" />
+    <link href="./styles/style.css" rel="stylesheet" type="text/css" />
 </head>
 
 <?php include "./navbar.php" ?>
