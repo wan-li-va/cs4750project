@@ -7,6 +7,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="icon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="icon/favicon-16x16.png">
     <link rel="manifest" href="icon/site.webmanifest">
+    <link rel="shortcut icon" href="https://pngimg.com/uploads/paw/paw_PNG21.png" type="image/ico" />
         <!-- FONT -->
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
@@ -20,13 +21,9 @@
         <meta name="author" content="Valerie Young">  
         <title>Purrfect Pets</title>  
         <style type="text/css">
-            h1	{font-family: 'Rubik', Arial;
-                }
-            h2   {font-family: 'Rubik', 'Arial';
-                  font-size: 25px;
-                }
-            p   {font-family: 'Rubik', 'Arial';
-                }
+            h1	{font-family: 'Rubik', Arial;}
+            h2   {font-family: 'Rubik', 'Arial'; font-size: 25px;}
+            p   {font-family: 'Rubik', 'Arial';}
         </style>
        
     </head>

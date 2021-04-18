@@ -1,0 +1,53 @@
+body {
+    height: 100vh;
+    width: 100vw;
+
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    padding: 10vh 10vw;
+    width: 100vw;
+    align-items: center;
+    justify-content: center;
+}
+
+.title {
+    padding: 5vh 0;
+}
+
+.pic {
+    width: 30vw;
+    height: auto;
+}
+
+.member {
+    display: flex;
+    flex-direction: row;
+
+}
+
+.description {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 5vw;
+}
+
+.sketchy {
+    padding: 0 5vw;
+    display: inline-block;
+    border: 3px solid #333333;
+    font-size: 2.5rem;
+    border-radius: 2% 6% 5% 4% / 1% 1% 2% 4%;
+    text-transform: uppercase;
+    letter-spacing: 0.3ch;
+    background: #ffffff;
+    position: relative;
+    margin-bottom: 5vh;
+}

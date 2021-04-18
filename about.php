@@ -20,23 +20,76 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
     <!-- ICON  -->
-    <link rel="shortcut icon" href="https://media2.giphy.com/media/n9wqJ8gTR9lQnXTvf3/giphy_s.gif" type="image/ico" />
+    <link rel="shortcut icon" href="https://pngimg.com/uploads/paw/paw_PNG21.png" type="image/ico" />
     <!-- EXTERNAL CSS -->
     <link href="./styles/style.css" rel="stylesheet" type="text/css" />
+    <link href="./styles/about.css" rel="stylesheet" type="text/css" />
 </head>
 
 <?php include "./navbar.php" ?>
-<div class="jumbotron">
-    <div class="container">
-        <h1 style="text-align:center"> About Us </h1>
-    </div>
+
+<div class="page-container">
+    <body>
+        <div class="wrapper">
+            <div class="sketchy">
+                <h1 class="title">Meet the team!</h1>
+            </div>
+            <h4 style="margin-bottom: 5vh;">We are a group of friends aiming to streamline the process of getting pets to their forever home.</h4>
+            <div class="member">
+                <img class="pic" src="https://i.imgur.com/icP5fku.jpg"
+                    alt="image not displayed" />
+                <div class="description">
+                    <h2>Valerie Young</h2>
+                    <h6>Major: B.A. Computer Science and Media Studies</h6>
+                    <h6>Year: 4th Year</h6>
+                    <h6>Email: vy5br@virginia.edu</h6>
+                    <p>Outside of school, I like reading for my book club :)</p>
+                </div>
+            </div>
+            <div class="member">
+                <div class="description">
+                    <h2>Katherine Weinschenk</h2>
+                    <h6>Major: B.A. Computer Science and Anthropology</h6>
+                    <h6>Year: 4th Year</h6>
+                    <h6>Email: kgw9ja@virginia.edu</h6>
+                    <p>Outside of school, I like cooking and breadmaking!</p>
+                </div>
+                <img class="pic" src="https://i.imgur.com/kkVlACr.jpg"
+                    alt="image not displayed" />
+            </div>
+            <div class="member">
+                <img class="pic" src="https://i.imgur.com/2PWxpyl.png"
+                    alt="image not displayed" />
+                <div class="description">
+                    <h2>Alan Zhai</h2>
+                    <h6>Major: B.A. Computer Science and Environmental Science</h6>
+                    <h6>Year: 4th Year</h6>
+                    <h6>Email: asz9qm@virginia.edu</h6>
+                    <p>Outside of school, I like to hike</p>
+                </div>
+            </div>
+            <div class="member">
+                <div class="description">
+                    <h2>Vivian Tran</h2>
+                    <h6>Major: B.A. Computer Science</h6>
+                    <h6>Year: 4th Year</h6>
+                    <h6>Email: vt5en@virginia.edu</h6>
+                    <p>Outside of school, I like to play video games~</p>
+                </div>
+                <img class="pic" src="https://i.gyazo.com/9aeedcfd62fd51fcf71b27a036f2481c.jpg"
+                    alt="image not displayed" />
+            </div>
+            <div class="member">
+                <img class="pic" src="https://i.imgur.com/S7H3v8T.jpg"
+                    alt="image not displayed" />
+                <div class="description">
+                    <h2>Wan Li</h2>
+                    <h6>Major: B.S. Computer Science</h6>
+                    <h6>Year: 2nd Year</h6>
+                    <h6>Email: wl9wgc@virginia.edu</h6>
+                    <p>Outside of school, I like to dance and stay active!</p>
+                </div>
+            </div>
+        </div>
+    </body>
 </div>
-    <h2 style="text-align:center">
-        Welcome to our site
-        <p>
-        Our names are: Vivian Tran, Valerie Young, Katherine Weinschenk, Alan Zhai, Wan Li 
-        <p>
-        We created this site because we want to streamline the process of getting pets to their forever home! 
-        <p>
-        <img src="https://i.pinimg.com/originals/11/28/af/1128afd21e1994b69a36f9688248a032.gif">
-    </h2>
