@@ -48,7 +48,7 @@
             $statement->closecursor();
             if($user_info[0]['role'] == 'admin')
             {
-                $query = "SELECT * FROM users";
+                $query = "SELECT * FROM users WHERE role != 'admin' ORDER BY username";
                 $statement = $db->prepare($query);
                 $statement->execute();
                     
@@ -70,8 +70,8 @@
         {
             if (!empty($_POST['action']) && ($_POST['action'] == 'Update'))
             {
-                $_SESSION['id'] = $_POST['task_id'];
-                header("Location: edit.php");
+                $_SESSION['id'] = $_POST['username'];
+                header("Location: managerChange.php");
 
             }
         }
@@ -98,7 +98,7 @@
                 <th>Last Name</th>
                 <th>Email Address</th>
                 <th>Phone Number</th>
-                <th>Change to Moderator</th>
+                <th>Change to Manager</th>
             </tr>
             <?php foreach ($user_info as $g): ?>
             <tr>
