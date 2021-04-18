@@ -18,7 +18,7 @@
     <!-- <link rel="stylesheet" href="../styles/account_create.css">  -->
     
 </head>
-
+<?php include "./navbar.html" ?>
   <?php 
   
     if ($_SERVER["REQUEST_METHOD"] == "POST") 
@@ -66,7 +66,7 @@
             $statement->execute();
             $statement->closeCursor();
 
-            
+            header("Location: login.php");
         }  
 
     }     
@@ -85,8 +85,8 @@
                     <div class="form-group">
                       <label for="exampleInputUsername">Username</label>
                       <input type="text" class="form-control" name="username1" id="username1" placeholder="Enter username" >
-                      <span class="error_message" id="msg_user"><?php if(!empty($user)) echo "Username already taken, please 
-                        enter another"?></span>
+                      <!-- <span class="error_message" id="msg_user"><?php if(!empty($user)) echo "Username already taken, please 
+                        enter another"?></span> -->
                     </div>
                     
                     <div class="form-group">
