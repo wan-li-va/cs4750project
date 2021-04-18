@@ -17,9 +17,8 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1"> 
         
-        <meta name="author" content="Vivian Tran vt5en & Valerie Young vy5br">
-        <meta name="description" content="Assignment 1">  
-        <title>queueAble: Finding Time for What's Important</title>  
+        <meta name="author" content="Valerie Young">  
+        <title>Purrfect Pets</title>  
         <style type="text/css">
             h1	{font-family: 'Rubik', Arial;
                 }
@@ -51,7 +50,7 @@ if(isset($_POST['submit'])){
           if (password_verify($passwordstr, $results[0]['password'])) 
           {
             session_start();
-            $_SESSION['user'] = $username;
+            $_SESSION['user'] = $user;
             header("Location: home.php");
           } 
           else{
