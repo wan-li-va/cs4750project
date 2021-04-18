@@ -14,10 +14,12 @@
 .btn{
     background: #2f4962;
     color: white;
+    font-family: 'Rubik', sans-serif;
 }
 
 .h1 {
     color: #031927;
+    font-family: 'Rubik', sans-serif;
 }
 
 a{
