@@ -44,7 +44,7 @@ try
 //  $db = new PDO("mysql:host=$hostname;dbname=$dbname, $username, $password);
    $db = new PDO($dsn, $username, $password);
       // display a message to let us know that we are connected to the database 
-   console.log("<p>You are connected to the database</p>;");
+   // console.log("<p>You are connected to the database</p>;");
 }
 catch (PDOException $e)     // handle a PDO exception (errors thrown by the PDO library)
 {
