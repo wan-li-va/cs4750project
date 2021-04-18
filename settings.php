@@ -48,7 +48,7 @@
             $user = $_SESSION['user'];
             $first = $_POST['first_name'];
             $last = $_POST['last_name'];
-            $email = $_POST['Email1'];
+            $email = $_POST['Email'];
             $phone = (int)$_POST['phone'];
         
             $query = "UPDATE users SET first_name=:first_name, last_name=:last_name,
@@ -68,6 +68,7 @@
                 window.location.href='home.php';
                 </script>";
         }
+      
      
  
  ?>
@@ -83,17 +84,16 @@
       </h3>
       <!-- registration form -->
       <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" name="SettingsForm" method="post" onsubmit="return checkRegistration()">
-
           <div class="form-group">
               <div class="form-row">
                   <div class = "col">
                       <label for="first_name">First Name</label>
-                      <input type="text" class="form-control" name="first_name" id="first_name" placeholder="Enter your first name" 
+                      <input type="text" class="form-control" name="first_name" id="first_name" placeholder="Enter your first name" required
                           value="<?php echo $user_info[0]['first_name'];?>">
                   </div>
                   <div class = "col">
                       <label for="last_name">Last Name</label>
-                      <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Enter your last name" 
+                      <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Enter your last name" required
                           value="<?php echo $user_info[0]['last_name'];?>">
                   </div> 
               </div>  
@@ -101,8 +101,8 @@
           </div>
 
           <div class="form-group">
-              <label for="exampleInputEmail1">Email address</label>
-              <input type="email" class="form-control" name="Email1" id="Email1" placeholder="Enter email" 
+              <label for="exampleInputEmail1">Email Address</label>
+              <input type="email" class="form-control" name="Email" id="Email" placeholder="Enter email" required
                   value="<?php echo $user_info[0]['email_address'];?>">
               <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
               <span class="error_message" id="msg_email"></span>
@@ -110,7 +110,7 @@
 
           <div class ="form-group">
               <label for="phone">Phone Number</label>
-              <input type="text" class = "form-control" name="phone" id="phone" placeholder="Enter your phone number" 
+              <input type="text" class = "form-control" name="phone" id="phone" placeholder="Enter your phone number" required
                   value="<?php echo $user_info[0]['phone_num'];?>">
               <small id="Phone number help" class="form-text text-muted">Please enter a 10 digit phone number</small>
               <span class="error_message" id="msg_phone"></span>                        
