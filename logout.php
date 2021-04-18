@@ -1,5 +1,4 @@
 <?php 
-    require("allActions.php");
     if ($_SERVER['REQUEST_METHOD'] == 'GET')
     {
         session_start();
@@ -11,7 +10,7 @@
             }     
         session_destroy();
         }
-        header('refresh:1; url=home.php');
+        header('refresh:0; url=home.php');
 
     }
 ?>

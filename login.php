@@ -35,9 +35,9 @@
 
 if(isset($_POST['submit'])){
 
-    $username = $_POST['username'];
+    $user = $_POST['username'];
     $passwordstr = $_POST['password'];
-    $query = "SELECT password FROM login WHERE username = '$username'";
+    $query = "SELECT password FROM login WHERE username = '$user'";
 
     $statement = $db->prepare($query);
     $statement->execute();
@@ -47,8 +47,7 @@ if(isset($_POST['submit'])){
         {
         //verify that the typed password matches the hashed password in the table
           if (password_verify($passwordstr, $results[0]['password'])) 
-          {
-            session_start();
+          {            
             $_SESSION['user'] = $user;
             header("Location: home.php");
           } 
