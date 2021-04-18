@@ -25,7 +25,7 @@
     <link href="./styles/style.css" rel="stylesheet" type="text/css" />
 </head>
 
-<?php include "./navbar.php" ?>
+<?php include "./navbar.php";?>
 
 <body>
     <body>

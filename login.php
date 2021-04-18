@@ -31,8 +31,7 @@
        
     </head>
     <body>
-    <?php include "./navbar.php" ?>
-    <?php
+    <?php include "./navbar.php";
 
 if(isset($_POST['submit'])){
 

@@ -42,27 +42,13 @@
                     <a class="nav-link" href="contact.php">Contact Us</a>
                 </li>
                 <!-- LOG IN BUTTON, REDIRECTS TO LOGIN PAGE -->
-                <?php
-                //checks to see if user is logged in
-                    if (!isset($_SESSION['user'])){
-
-                ?>
                 <li class="nav-item">
-                    <a class="nav-link login" href="login.php"
-                        style=" color: black; background-color: lightblue; 
-              border-radius: 10px; width: 8vw; text-align: center; border-color: black; border-width: 1px; border-style: solid;">Log In!</a>
+                    <a class="nav-link" 
+                    style=" color: black; background-color: lightblue; 
+              border-radius: 10px; width: 8vw; text-align: center; border-color: black; border-width: 1px; border-style: solid;"
+                    a href="<?php if(isset($_SESSION['user'])){echo "logout.php";} 
+                    else{echo "login.php";}?>"><?php if(isset($_SESSION['user'])){echo "Log Out";} else{echo "Login";}?></a>
                 </li>
-                <?php 
-                    }
-                    else
-                    {
-                ?>
-                <li class="nav-item">
-                    <a class="nav-link logout" href="logout.php"
-                        style=" color: black; background-color: lightblue; 
-              border-radius: 10px; width: 8vw; text-align: center; border-color: black; border-width: 1px; border-style: solid;">Log Out</a>
-
-                <?php }?>
             </ul>
         </div>
 
