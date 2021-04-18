@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <link href="./styles/navbar.css" rel="stylesheet" type="text/css" />
 
 <header class="header">
@@ -33,11 +35,27 @@
                     <a class="nav-link" href="contact.html">Contact Us</a>
                 </li>
                 <!-- LOG IN BUTTON, REDIRECTS TO LOGIN PAGE -->
+                <?php
+                //checks to see if user is logged in
+                    if (!isset($_SESSION['user'])){
+
+                ?>
                 <li class="nav-item">
                     <a class="nav-link login" href="login.php"
                         style=" color: black; background-color: lightblue; 
               border-radius: 10px; width: 8vw; text-align: center; border-color: black; border-width: 1px; border-style: solid;">Log In!</a>
                 </li>
+                <?php 
+                    }
+                    else
+                    {
+                ?>
+                <li class="nav-item">
+                    <a class="nav-link logout" href="logout.php"
+                        style=" color: black; background-color: lightblue; 
+              border-radius: 10px; width: 8vw; text-align: center; border-color: black; border-width: 1px; border-style: solid;">Log Out</a>
+
+                <?php }?>
             </ul>
         </div>
 
