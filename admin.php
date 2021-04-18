@@ -30,30 +30,43 @@
 <body>
     <div class="body">
 
-<?php
-require_once('./connect-db.php');
-$con = new mysqli($hostname, $username, $password, $dbname);
-// Check connection
-if (mysqli_connect_errno()) {
-echo("Can't connect to MySQL Server. Error code: " .
-mysqli_connect_error());
-return null;
-}
-// Form the SQL query (a SELECT query)
-$sql="SELECT * FROM users ORDER BY username";
-$result = mysqli_query($con,$sql);
-// Print the data from the table row by row
-while($row = mysqli_fetch_array($result)) {
-echo $row['username'];
-echo " " . $row['role'];
-echo " " . $row['first_name'];
-echo " " . $row['last_name'];
-echo " " . $row['email_address'];
-echo " " . $row['phone_num'];
-echo "<br>";
-}
-mysqli_close($con);
-?>
+    <?php
+    require_once('./connect-db.php');
+    $con = new mysqli($hostname, $username, $password, $dbname);
+    // Check connection
+    if (mysqli_connect_errno()) {
+    echo("Can't connect to MySQL Server. Error code: " .
+    mysqli_connect_error());
+    return null;
+    }?>
+
+    <table cellspacing='4' cellpadding='4'>
+        <tr>
+            <th>Username</th>
+            <th>Role</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email Address</th>
+            <th>Phone</th>
+        </tr>
+
+    <?php
+    // Form the SQL query (a SELECT query)
+    $sql="SELECT * FROM users ORDER BY username";
+    $result = mysqli_query($con,$sql);
+    // Print the data from the table row by row
+    while($row = mysqli_fetch_array($result)) {
+        echo "<td>" . $row['username'] . "</td>";
+        echo "<td>" . $row['role'] . "</td>";
+        echo "<td>" . $row['first_name'] . "</td>";
+        echo "<td>" . $row['last_name'] . "</td>";
+        echo "<td>" . $row['email_address'] . "</td>";
+        echo "<td>" . $row['phone_num'] . "</td>";
+        echo "</tr>";
+    }
+    mysqli_close($con);
+    ?>
+    </table>
 
 </div>
 </body>
