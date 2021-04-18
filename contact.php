@@ -32,17 +32,21 @@
         
     <h1> Send us a question! </h1>
     <div class="form-group">
-                    <label for="formGroupExampleInput">Name</label>
-                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Your name">
+                    <label>Name</label>
+                    <input type="text" class="form-control" id="full_name" placeholder="Your name">
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Email address</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                    <label>Email address</label>
+                    <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Email">
                 </div>
                 <div class="form-group">
-                    <label for="exampleFormControlTextarea1">Your Message</label>
+                    <label>Subject</label>
+                    <input type="email" class="form-control" id="subject" aria-describedby="emailHelp" placeholder="Subject">
+                </div>
+                <div class="form-group">
+                    <label>Your Message</label>
                     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                 </div>
-                <button type="submit" class="btn btn-lg">Submit</button>
+                <input type="submit" class="btn btn-lg"></button>
     </div>
 </body>
