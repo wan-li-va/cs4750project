@@ -31,7 +31,12 @@
         <h1 style="text-align:center"> About Us </h1>
     </div>
 </div>
-    <h1>
-        We're a team of five University students that want to streamline the process of getting pets to their forever home! 
-        <img class="mainimg" src="https://i.pinimg.com/originals/11/28/af/1128afd21e1994b69a36f9688248a032.gif">
-    </h1>
+    <h2 style="text-align:center">
+        Welcome to our site
+        <p>
+        Our names are: Vivian Tran, Valerie Young, Katherine Weinschenk, Alan Zhai, Wan Li 
+        <p>
+        We created this site because we want to streamline the process of getting pets to their forever home! 
+        <p>
+        <img src="https://i.pinimg.com/originals/11/28/af/1128afd21e1994b69a36f9688248a032.gif">
+    </h2>

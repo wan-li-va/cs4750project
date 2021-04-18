@@ -29,6 +29,20 @@
 
 <body>
     <div class="body">
-        <img class="mainimg" src="https://i.pinimg.com/originals/11/28/af/1128afd21e1994b69a36f9688248a032.gif">
+        
+    <h1> Send us a question! </h1>
+    <div class="form-group">
+                    <label for="formGroupExampleInput">Name</label>
+                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Your name">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Email address</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Your Message</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                </div>
+                <button type="submit" class="btn btn-lg">Submit</button>
     </div>
 </body>
