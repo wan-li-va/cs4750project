@@ -20,7 +20,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
     <!-- ICON  -->
-    <link rel="shortcut icon" href="https://pngimg.com/uploads/paw/paw_PNG21.png" type="image/ico" />
+    <link rel="shortcut icon" href="https://media2.giphy.com/media/n9wqJ8gTR9lQnXTvf3/giphy_s.gif" type="image/ico" />
     <!-- EXTERNAL CSS -->
     <link href="./styles/style.css" rel="stylesheet" type="text/css" />
 </head>
@@ -42,53 +42,31 @@
 
     <table cellspacing='4' cellpadding='4'>
         <tr>
-            <th>Name</th>
-            <th>Date of Birth</th>
-            <th>Type of Animal</th>
-            <th>Color</th>
-            <th>Breed</th>
-            <th>Vaccinated</th>
-            <th>Spayed/Neutered</th>
-            <th>Shelter Name</th>
-            <th>Adoptable</th>
-            <th>Fosterable</th>
-            <th>Notes</th>
-            <th>Image</th>
+            <th>Username</th>
+            <th>Role</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email Address</th>
+            <th>Phone</th>
         </tr>
 
     <?php
     // Form the SQL query (a SELECT query)
-    $sql="SELECT * FROM pets ORDER BY name";
+    $sql="SELECT * FROM users ORDER BY username";
     $result = mysqli_query($con,$sql);
     // Print the data from the table row by row
     while($row = mysqli_fetch_array($result)) {
-        echo "<td>" . $row['name'] . "</td>";
-        echo "<td>" . $row['dob'] . "</td>";
-        echo "<td>" . $row['sex'] . "</td>";
-        echo "<td>" . $row['type_of_animal'] . "</td>";
-        echo "<td>" . $row['color'] . "</td>";
-        echo "<td>" . $row['breed'] . "</td>";
-        echo "<td>" . $row['is_vaccinated'] . "</td>";
-        echo "<td>" . $row['is_spayed_neutered'] . "</td>";
-        echo "<td>" . $row['shelter_name'] . "</td>";
-        echo "<td>" . $row['is_adoptable'] . "</td>";
-        echo "<td>" . $row['is_fosterable'] . "</td>";
-        echo "<td>" . $row['notes'] . "</td>";
-        echo "<td>" . $row['notes'] . "</td>";
+        echo "<td>" . $row['username'] . "</td>";
+        echo "<td>" . $row['role'] . "</td>";
+        echo "<td>" . $row['first_name'] . "</td>";
+        echo "<td>" . $row['last_name'] . "</td>";
+        echo "<td>" . $row['email_address'] . "</td>";
+        echo "<td>" . $row['phone_num'] . "</td>";
         echo "</tr>";
     }
     mysqli_close($con);
     ?>
     </table>
-    <div class="card" style="width: 18rem;">
-    <img class="card-img-top" src="..." alt="Card image cap">
-    <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-    </div>
 
-    
-</div>
 </div>
 </body>
