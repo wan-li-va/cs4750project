@@ -5,6 +5,7 @@ body {
     display: flex;
     flex-direction: column;
     position: relative;
+    font-family: 'Rubik', Arial;
 }
 
 .wrapper {
@@ -50,4 +51,5 @@ body {
     background: #ffffff;
     position: relative;
     margin-bottom: 5vh;
+    font-family: 'Rubik', Arial;
 }
