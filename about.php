@@ -16,6 +16,9 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+    <!-- FONT -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
     <!-- ICON  -->
     <link rel="shortcut icon" href="https://media2.giphy.com/media/n9wqJ8gTR9lQnXTvf3/giphy_s.gif" type="image/ico" />
     <!-- EXTERNAL CSS -->
@@ -23,9 +26,12 @@
 </head>
 
 <?php include "./navbar.php" ?>
-
-<body>
-    <div class="body">
-        <img class="mainimg" src="https://i.pinimg.com/originals/11/28/af/1128afd21e1994b69a36f9688248a032.gif">
+<div class="jumbotron">
+    <div class="container">
+        <h1 style="text-align:center"> About Us </h1>
     </div>
-</body>
+</div>
+    <h1>
+        We're a team of five University students that want to streamline the process of getting pets to their forever home! 
+        <img class="mainimg" src="https://i.pinimg.com/originals/11/28/af/1128afd21e1994b69a36f9688248a032.gif">
+    </h1>
