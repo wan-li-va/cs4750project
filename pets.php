@@ -29,6 +29,66 @@
 
 <body>
     <div class="body">
-        <img class="mainimg" src="https://i.pinimg.com/originals/11/28/af/1128afd21e1994b69a36f9688248a032.gif">
+
+    <?php
+    require_once('./connect-db.php');
+    $con = new mysqli($hostname, $username, $password, $dbname);
+    // Check connection
+    if (mysqli_connect_errno()) {
+    echo("Can't connect to MySQL Server. Error code: " .
+    mysqli_connect_error());
+    return null;
+    }?>
+
+    <table cellspacing='4' cellpadding='4'>
+        <tr>
+            <th>Name</th>
+            <th>Date of Birth</th>
+            <th>Type of Animal</th>
+            <th>Color</th>
+            <th>Breed</th>
+            <th>Vaccinated</th>
+            <th>Spayed/Neutered</th>
+            <th>Shelter Name</th>
+            <th>Adoptable</th>
+            <th>Fosterable</th>
+            <th>Notes</th>
+            <th>Image</th>
+        </tr>
+
+    <?php
+    // Form the SQL query (a SELECT query)
+    $sql="SELECT * FROM pets ORDER BY name";
+    $result = mysqli_query($con,$sql);
+    // Print the data from the table row by row
+    while($row = mysqli_fetch_array($result)) {
+        echo "<td>" . $row['name'] . "</td>";
+        echo "<td>" . $row['dob'] . "</td>";
+        echo "<td>" . $row['sex'] . "</td>";
+        echo "<td>" . $row['type_of_animal'] . "</td>";
+        echo "<td>" . $row['color'] . "</td>";
+        echo "<td>" . $row['breed'] . "</td>";
+        echo "<td>" . $row['is_vaccinated'] . "</td>";
+        echo "<td>" . $row['is_spayed_neutered'] . "</td>";
+        echo "<td>" . $row['shelter_name'] . "</td>";
+        echo "<td>" . $row['is_adoptable'] . "</td>";
+        echo "<td>" . $row['is_fosterable'] . "</td>";
+        echo "<td>" . $row['notes'] . "</td>";
+        echo "<td>" . $row['notes'] . "</td>";
+        echo "</tr>";
+    }
+    mysqli_close($con);
+    ?>
+    </table>
+    <div class="card" style="width: 18rem;">
+    <img class="card-img-top" src="..." alt="Card image cap">
+    <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
     </div>
+
+    
+</div>
+</div>
 </body>
