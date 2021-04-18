@@ -29,19 +29,25 @@
 
 <body>
     <div class="body">
-    <h1> Send us a question! </h1>
-    <div class="form-group">
-                    <label for="formGroupExampleInput">Name</label>
-                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Your name">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Email address</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                </div>
-                <div class="form-group">
-                    <label for="exampleFormControlTextarea1">Your Message</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                </div>
-                <button type="submit" class="btn btn-lg">Submit</button>
+        <div class="sketchy">
+            <h1 class="title">Contact Us</h1>
+        </div>
+            <h3> Send us a question! </h3>
+        </div>
+        <div class="form" style="margin-left: 25vw; margin-right: 25vw; margin-bottom: 10vh; margin-top: -5vh;">
+            <div class="form-group">
+                <label for="formGroupExampleInput">Name</label>
+                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Your name">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Email address</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">Your Message</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>
+            <button type="submit" class="btn btn-lg">Submit</button>
+        </div>
     </div>
 </body>
