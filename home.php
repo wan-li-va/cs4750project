@@ -22,7 +22,7 @@
     <link href="./styles/home.css" rel="stylesheet" type="text/css" />
 </head>
 
-<?php include "./navbar.html" ?>
+<?php include "./navbar.php" ?>
 
 <body>
     <div class="body">

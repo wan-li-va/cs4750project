@@ -18,7 +18,7 @@
     <!-- <link rel="stylesheet" href="../styles/account_create.css">  -->
     
 </head>
-<?php include "./navbar.html" ?>
+<?php include "./navbar.php" ?>
   <?php 
   
     if ($_SERVER["REQUEST_METHOD"] == "POST") 

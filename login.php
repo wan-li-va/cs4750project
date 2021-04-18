@@ -32,7 +32,7 @@
        
     </head>
     <body>
-    <?php include "./navbar.html" ?>
+    <?php include "./navbar.php" ?>
     <?php
 
 if(isset($_POST['submit'])){
