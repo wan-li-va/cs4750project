@@ -19,6 +19,10 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" 
+        crossorigin="anonymous">
+    
     <!-- FONT -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
@@ -57,7 +61,74 @@
     <body>
     <div class="sketchy">
         <center><h1 class="title">List of Donors</h1>
-        <a>Thank you to everyone who has contributed to our causes. If you are interested in donating to a shelter, please <a href="contact.php">contact us</a>.</a></center>
+        <a>Thank you to everyone who has contributed to our causes. If you are interested in donating to a shelter, please <a href="contact.php">click to contact us</a>.</a></center>
+        
+    <!-- MODAL SCRIPT -->
+    <div class="modal fade" tabindex="-1" role="dialog" id="modal">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content"></div>
+      </div>
+    </div>
+    <script type="text/javascript">
+      $(function () {
+
+        // brings up the modal when clicking the update button
+        $("addDonor").each(function () {
+          modalForm;
+        });
+
+        // necessary for the modal fading in and out
+          $(".alert").fadeTo(2000, 500).slideUp(500, function(){
+            $(".alert").slideUp(500);
+          });
+
+          });
+    </script>
+
+    <!-- THE MODAL ITSELF -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <center><h2>Add Donor</h2></center>
+    <form action="add" method="POST">
+        <div class="form-group col-md-12">
+            <label for="do_name">Data Object Name</label>
+            <input type="text" name="do_name" class="form-control" placeholder="Data Object Name">
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="source_app_cd">Source Application Code</label>
+                <input type="text" class="form-control" name="source_app_code" placeholder="Source Application Code">
+            </div>
+
+            <div class="form-group col-md-4">
+                <label for="source_cd">Source Code</label>
+                <input type="text" class="form-control" name="source_cd" placeholder="Source Code">
+            </div>
+
+            <div class="form-group col-md-4">
+                <label for="tenant_id">Tenant ID</label>
+                <input type="number" class="form-control" name="tenant_id" placeholder="Tenant ID">
+            </div>
+        </div>
+
+        <div class="form-group col-md-12">
+            <label for="data_object_desc">Data Object Description</label>
+            <textarea class="form-control" name="data_object_desc" rows="2" placeholder="Data Object Description"></textarea>
+        </div>
+        <center><button type="submit" class="btn btn-primary">Submit</button></center>
+    </form>
+        </div>
+    </div>
+
+    <!-- FOR ADMINS ONLY -->
+    <? if (isset($_SESSION['user']))
+        {if($user_info[0]['role'] == 'admin'){?>
+            <center><a>To add a donor to this table, click <a href="admin.php" id="addDonor">here</a>.</a></center>
+        <?}}
+    ?>
+
     </div>
     <div class="table-responsive">
         <!-- Make it striped -->
@@ -93,7 +164,20 @@
                 </td>
                 <td>
                     <?php echo '$' . $g['donation_amount']; ?> 
-                </td>                                                     
+                </td>
+                <? if (isset($_SESSION['user'])){
+                    if($user_info[0]['role'] == 'admin'){?>
+                <td>
+                    <!-- Update data object button on each row -->
+                    <button type="button" class="update-do btn btn-sm btn-primary" data-id="editDonor">
+                    Edit
+                    </button>
+                    <!-- Delete data object button on each row-->
+                    <button type="button" class="delete-do btn btn-sm btn-danger" data-id="deleteDonor">
+                    Delete
+                    </button>
+                <?}} ?> 
+                </td>                                                    
             </tr>
             <?php endforeach; ?>
 
