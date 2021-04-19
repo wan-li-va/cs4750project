@@ -26,6 +26,7 @@
 </head>
 
 <?php include "./navbar.php" ?>
+<script type="text/javascript" src="js/script.js"></script>
 
 <body>
     <div class="body">
@@ -46,22 +47,10 @@
                 <label for="message">Your Message</label>
                 <textarea class="form-control" id="message" rows="3"></textarea>
             </div>
-            <button type="submit" class="btn btn-lg" onclick="validate()">Submit</button>
+            <button type="submit" class="btn btn-lg" onclick="sendEmail()" target="_blank">Submit</button>
             
         </div>
     </div>
 </body>
-
-<script>
-    function validate{
-        if (document.getElementById("name").value != "" && document.getElementById("subject").value != "" &&
-        document.getElementById("message").value != "") {
-            mailto:wl9wgc@virginia.edu?subject=document.getElementById("subject").value&message=document.getElementById("message") + '<br>' + document.getElementById("name");
-            alert("Your message has been sent to the admin!");
-        }
-        else {
-            alert("Please fill out the form.");
-        }
-</script>
 
 </html>
