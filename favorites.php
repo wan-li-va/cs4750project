@@ -25,8 +25,10 @@
     <link href="./styles/style.css" rel="stylesheet" type="text/css" />
 </head>
 
-<?php include "./navbar.php" ?>
+<?php include "./navbar.php"; 
 
+    if (isset($_SESSION['user'])){
+      ?>
 <body>
     <body>
           <div class="jumbotron">
@@ -59,3 +61,21 @@
           </div>
     </body>
 </body>
+
+<?php 
+  }
+  else
+  {
+?>
+<body>
+    <div class="body">
+    <div class="container" style="text-align: center;">
+    <h4>
+        You are not logged in.
+    </h4>
+    <a class="btn btn-primary" href="home.php">Return Home</a>
+</body>
+
+<?php
+    }
+?>

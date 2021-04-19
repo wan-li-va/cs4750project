@@ -49,12 +49,14 @@ if(isset($_POST['submit'])){
             header("Location: home.php");
           } 
           else{
-            echo "<div class=\"text-center\">That's the wrong password. Go back and try again.</div>";
+            echo "<div class=\"text-center\">That's the wrong password. Please try again.</div>";
           }
         }
     }
+    else{
+      echo "<div class=\"text-center\">That account doesn't exist.</div>";
+    }
 }
-    
     ?>
 
       <div class="container">
