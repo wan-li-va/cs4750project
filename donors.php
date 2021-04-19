@@ -73,8 +73,9 @@
             <tr class="thead">
                 <th>First Name</th>
                 <th>Last Name</th>
-                <th>Donation Amount</th>
+                <th>Donation Date</th>
                 <th>Shelter Name</th>
+                <th>Donation Amount</th>
             </tr>
             <?php foreach ($user_info as $g): ?>
             <tr>
@@ -83,12 +84,15 @@
                 </td>
                 <td>
                     <?php echo $g['last_name']; ?> 
+                </td>    
+                <td>
+                    <?php echo $g['donation_date']; ?> 
                 </td>        
                 <td>
-                    <?php echo $g['donation_amt']; ?> 
+                    <?php echo $g['shelter_name']; ?> 
                 </td>
                 <td>
-                    <?php echo $g['shelter_name']; ?> 
+                    <?php echo '$' . $g['donation_amount']; ?> 
                 </td>                                                     
             </tr>
             <?php endforeach; ?>
