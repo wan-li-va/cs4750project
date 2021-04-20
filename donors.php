@@ -147,6 +147,7 @@
                 <th>Donation Date</th>
                 <th>Shelter Name</th>
                 <th>Donation Amount</th>
+                <th>Admin Controls</th>
             </tr>
             <?php foreach ($user_info as $g): ?>
             <tr>
@@ -168,16 +169,18 @@
                 <? if (isset($_SESSION['user'])){
                     if($user_info[0]['role'] == 'admin'){?>
                 <td>
-                    <!-- Update data object button on each row -->
-                    <button type="button" class="update-do btn btn-sm btn-primary" data-id="editDonor">
-                    Edit
-                    </button>
-                    <!-- Delete data object button on each row-->
-                    <button type="button" class="delete-do btn btn-sm btn-danger" data-id="deleteDonor">
-                    Delete
-                    </button>
-                <?}} ?> 
-                </td>                                                    
+                <!-- Update data object button on each row -->
+                    <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
+                        <input type="submit" value="Update" name="action" class="btn btn-primary" />   
+                        <!-- <input type="hidden" name="username" /> -->
+                    </form>   
+                <!-- Update data object button on each row -->
+                    <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
+                        <input type="submit" value="Delete" name="action" class="btn btn-primary" />             
+                        <!-- <input type="hidden" name="username" /> -->
+                    </form>    
+                </td>
+                <?}} ?>                                                  
             </tr>
             <?php endforeach; ?>
 
