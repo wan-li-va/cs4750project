@@ -34,7 +34,7 @@
         if (!isset($_SESSION['id']))
         {
             echo "<script>
-                alert('Nothing to edit, returning home');
+                alert('Nothing to delete, returning home');
                 window.location.href='home.php';
                 </script>";
         }
@@ -48,16 +48,14 @@
             }
             else
             {
-                $query = "UPDATE users SET role=:role
-                    WHERE username=:username";
+                $query = "DELETE FROM employees WHERE username=:username";
                 $statement = $db->prepare($query);
-                $statement->bindValue(':role', 'manager');
                 $statement->bindValue(':username', $_SESSION['id']);
                 $statement->execute();
                 $statement->closeCursor();
                 unset($_SESSION['id']);
                 echo "<script>
-                alert('User changed to manager');
+                alert('User removed from employees');
                 window.location.href='home.php';
                 </script>";
             }
@@ -70,7 +68,7 @@
       <!-- a form -->
       <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" name="editForm" method="post">
 
-        <h4>Are you sure you want to change <?php echo "User: "; echo $_SESSION['id'];?> to manager</h4>
+        <h4>Are you sure you want to remove <?php echo "User: "; echo $_SESSION['id'];?> as an employee</h4>
           
             <div class="row">
                 <div class="form-group col-md">
