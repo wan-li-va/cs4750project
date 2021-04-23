@@ -74,6 +74,18 @@
                 header("Location: managerChange.php");
 
             }
+            elseif (!empty($_POST['action']) && ($_POST['action'] == 'Change'))
+            {
+                $_SESSION['id'] = $_POST['username'];
+                header("Location: employeeAdd.php");
+
+            }
+            elseif (!empty($_POST['action']) && ($_POST['action'] == 'Delete'))
+            {
+                $_SESSION['id'] = $_POST['username'];
+                header("Location: userDelete.php");
+
+            }
         }
     ?>
     <body>
@@ -99,6 +111,8 @@
                 <th>Email Address</th>
                 <th>Phone Number</th>
                 <th>Change to Manager</th>
+                <th>Add to employees</th>
+                <th>Delete User</th>
             </tr>
             <?php foreach ($user_info as $g): ?>
             <tr>
@@ -125,7 +139,19 @@
                         <input type="submit" value="Update" name="action" class="btn btn-primary" />             
                         <input type="hidden" name="username" value="<?php echo $g['username'] ?>" />
                     </form> 
-                </td>                                                       
+                </td>  
+                <td>
+                    <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
+                        <input type="submit" value="Change" name="action" class="btn btn-primary" />             
+                        <input type="hidden" name="username" value="<?php echo $g['username'] ?>" />
+                    </form> 
+                </td>  
+                <td>
+                    <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
+                        <input type="submit" value="Delete" name="action" class="btn btn-primary" />             
+                        <input type="hidden" name="username" value="<?php echo $g['username'] ?>" />
+                    </form> 
+                </td>                                                      
             </tr>
             <?php endforeach; ?>
 
