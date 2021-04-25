@@ -85,11 +85,12 @@
             <div class='container'>
             <div class='row'>";
             
-
+    echo "<div class='row'>";
     while($row = mysqli_fetch_array($exeQuery)) {
         // $name = $row['name'];
         // $desciption = $row['desciption'];
         // $ephoto = $row['ephoto'];
+        echo "<div class='col-sm-6'>";
         echo  "<div class='card'>";
         echo  "<div class='card-body'>"; 
 
@@ -186,9 +187,10 @@
 
         echo  "</div>";
         echo  "</div>";
+        echo  "</div>";
     
     }    
-  
+    echo  "</div>";
     // $name =  $row['name'];
     //     $dob = $row['dob'];
     //     $sex =  $row['sex'] ;
