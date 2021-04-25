@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- required to handle IE -->
@@ -20,18 +19,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
     <!-- ICON  -->
-    <link rel="shortcut icon" href="https://pngimg.com/uploads/paw/paw_PNG21.png" type="image/ico" />
+    <link rel="shortcut icon" href="https://media2.giphy.com/media/n9wqJ8gTR9lQnXTvf3/giphy_s.gif" type="image/ico" />
     <!-- EXTERNAL CSS -->
     <link href="./styles/style.css" rel="stylesheet" type="text/css" />
 </head>
-
-<?php include "./navbar.php"; 
-
-    if (isset($_SESSION['user'])){
-      ?>
+<?php include "./navbar.php" ?>
 <body>
     <div class="body">
-
     <?php
     require_once('./connect-db.php');
     $con = new mysqli($hostname, $username, $password, $dbname);
@@ -57,7 +51,6 @@
             <th>Notes</th>
             <th>Image</th>
         </tr> -->
-
     <?php
     // Form the SQL query (a SELECT query)
     $sql="SELECT * FROM favorites ORDER BY name";
@@ -82,7 +75,6 @@
     
     $output="";
     $exeQuery = mysqli_query($con,$sql);
-
     $output="<h2>Welcome to Modern Business
             <div class='container'>
             <div class='row'>";
@@ -95,68 +87,42 @@
         echo "<div class='col-sm-6'>";
         echo  "<div class='card'>";
         echo  "<div class='card-body'>"; 
-        
-            if ($row['image'] != NULL) {
-            echo "<img class='favoritesimg' img src='";
-            echo $image = $row['image'];
-            echo "'> </img>";
-            }
-            else {
-                echo "<img class='favoritesimg' img src='https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/480px-No_image_available.svg.png'> </img>";
-            }
-
-            echo "<h1 style='text-align:center'>";
-            echo  $name =  $row['name'];
-            echo "</h1>";
-            
-            //Birthdate
-            echo "<p class='petsinfo'> <b> Birthdate (YYYY-MM-DD): </b>";
-            echo $dob = $row['dob'];
-            echo "</p>";
-
-            //adoptable
-            echo "<p class='petsinfo'> <b>Adoptable: </b>";
-            if ($row['is_adoptable' == "1"]) {
-                echo "Up for Adoption";
-            }
-            else {
-                echo "Not Up for Adoption";
-            }
-            echo "</p>";
-            
-
-            //fosterable
-            echo "<p class='petsinfo'> <b>Fosterable: </b>";
-            if ($row['is_fosterable' == "1"]) {
-                echo "Up for Foster";
-            }
-            else {
-                echo "Not Fosterable";
-            }
-            echo "</p>";
-
-            echo  "</div>";
-            echo  "</div>";
-            echo  "</div>";
-        }
-    
-
-    echo  "</div>";
-    
-    mysqli_close($con);
-    ?>
-
-    
-    <!-- </table>
-    <div class="card" style="width: 18rem;">
-    <img class="card-img-top" src="..." alt="Card image cap">
-    <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-    </div> -->
-
-    
-</div>
-</div>
-</body>
+        if ($row['image'] != NULL) {
+          echo "<img class='favoritesimg' img src='";
+          echo $image = $row['image'];
+          echo "'> </img>";
+          }
+          else {
+              echo "<img class='favoritesimg' img src='https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/480px-No_image_available.svg.png'> </img>";
+          }
+          echo "<h1 style='text-align:center'>";
+          echo  $name =  $row['name'];
+          echo "</h1>";
+          
+          //Birthdate
+          echo "<p class='petsinfo'> <b> Birthdate (YYYY-MM-DD): </b>";
+          echo $dob = $row['dob'];
+          echo "</p>";
+          //adoptable
+          echo "<p class='petsinfo'> <b>Adoptable: </b>";
+          if ($row['is_adoptable' == "1"]) {
+              echo "Up for Adoption";
+          }
+          else {
+              echo "Not Up for Adoption";
+          }
+          echo "</p>";
+          
+          //fosterable
+          echo "<p class='petsinfo'> <b>Fosterable: </b>";
+          if ($row['is_fosterable' == "1"]) {
+              echo "Up for Foster";
+          }
+          else {
+              echo "Not Fosterable";
+          }
+          echo "</p>";
+          echo  "</div>";
+          echo  "</div>";
+          echo  "</div>";
+      }
