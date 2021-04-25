@@ -106,25 +106,6 @@
           echo "<p class='petsinfo'> <b> Birthdate (YYYY-MM-DD): </b>";
           echo $dob = $row['dob'];
           echo "</p>";
-          //adoptable
-          echo "<p class='petsinfo'> <b>Adoptable: </b>";
-          if ($row['is_adoptable' == "1"]) {
-              echo "Up for Adoption";
-          }
-          else {
-              echo "Not Up for Adoption";
-          }
-          echo "</p>";
-          
-          //fosterable
-          echo "<p class='petsinfo'> <b>Fosterable: </b>";
-          if ($row['is_fosterable' == "1"]) {
-              echo "Up for Foster";
-          }
-          else {
-              echo "Not Fosterable";
-          }
-          echo "</p>";
           echo  "</div>";
           echo  "</div>";
           echo  "</div>";
