@@ -58,7 +58,7 @@
 
     <?php
     // Form the SQL query (a SELECT query)
-    $sql="SELECT * FROM pets ORDER BY name";
+    $sql="SELECT * FROM favorites ORDER BY name";
     $result = mysqli_query($con,$sql);
     // Print the data from the table row by row
     // while($row = mysqli_fetch_array($result)) {
@@ -90,124 +90,57 @@
         // $name = $row['name'];
         // $desciption = $row['desciption'];
         // $ephoto = $row['ephoto'];
-        echo "<div class='col-sm-3'>";
+        echo "<div class='col-sm-6'>";
         echo  "<div class='card'>";
         echo  "<div class='card-body'>"; 
-
-        if ($row['image'] != NULL) {
-        echo "<img class='animalimg' img src='";
-        echo $image = $row['image'];
-        echo "'> </img>";
-        }
-        else {
-            echo "<img class='animalimg' img src='https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/480px-No_image_available.svg.png'> </img>";
-        }
-
-        echo "<h1 style='text-align:center'>";
-        echo  $name =  $row['name'];
-        echo "</h1>";
         
-        //Birthdate
-        echo "<p class='petsinfo'> <b> Birthdate (YYYY-MM-DD): </b>";
-        echo $dob = $row['dob'];
-        echo "</p>";
+        if ($_SESSION['user'] == $username) {
+            if ($row['image'] != NULL) {
+            echo "<img class='favoritesimg' img src='";
+            echo $image = $row['image'];
+            echo "'> </img>";
+            }
+            else {
+                echo "<img class='favoritesimg' img src='https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/480px-No_image_available.svg.png'> </img>";
+            }
 
-        //Sex, ASSUME THE LETTER IS CAPITALIZED
-        echo "<p class='petsinfo'> <b> Sex: </b>";
-        if ($row['sex' == "F"]) {
-            echo "Female";
+            echo "<h1 style='text-align:center'>";
+            echo  $name =  $row['name'];
+            echo "</h1>";
+            
+            //Birthdate
+            echo "<p class='petsinfo'> <b> Birthdate (YYYY-MM-DD): </b>";
+            echo $dob = $row['dob'];
+            echo "</p>";
+
+            //adoptable
+            echo "<p class='petsinfo'> <b>Adoptable: </b>";
+            if ($row['is_adoptable' == "1"]) {
+                echo "Up for Adoption";
+            }
+            else {
+                echo "Not Up for Adoption";
+            }
+            echo "</p>";
+            
+
+            //fosterable
+            echo "<p class='petsinfo'> <b>Fosterable: </b>";
+            if ($row['is_fosterable' == "1"]) {
+                echo "Up for Foster";
+            }
+            else {
+                echo "Not Fosterable";
+            }
+            echo "</p>";
+
+            echo  "</div>";
+            echo  "</div>";
+            echo  "</div>";
         }
-        else {
-            echo "Male";
-        }
-        echo "</p>";
-
-        //Type of Animal
-        echo "<p class='petsinfo'> <b> Animal: </b>";
-        echo $type = $row['type_of_animal'];
-        echo "</p>";
-
-        //Color
-        echo "<p class='petsinfo'> <b> Color: </b>";
-        echo $color = $row['color'];
-        echo "</p>";
-
-        //Breed
-        echo "<p class='petsinfo'> <b> Breed: </b>";
-        echo $breed = $row['breed'];
-        echo "</p>";
-
-
-        // Vaccinations
-        echo "<p class='petsinfo'> <b> Vaccinations: </b>";
-        if ($row['is_vaccinated' == "1"]) {
-            echo "Up to Date";
-        }
-        else {
-            echo "Missing";
-        }
-        echo "</p>";
-
-        //spayed/neutered
-        echo "<p class='petsinfo'> <b>Spayed/Neutered: </b>";
-        if ($row['is_spayed_neutered' == "1"]) {
-            echo "Yes";
-        }
-        else {
-            echo "No";
-        }
-        echo "</p>";
-
-
-        //shelter
-        echo "<p class='petsinfo'> <b>Current Shelter: </b>";
-        echo $shelter = $row['shelter_name'];
-        echo "</p>";
-
-        //adoptable
-        echo "<p class='petsinfo'> <b>Adoptable: </b>";
-        if ($row['is_adoptable' == "1"]) {
-            echo "Up for Adoption";
-        }
-        else {
-            echo "Not Up for Adoption";
-        }
-        echo "</p>";
-        
-
-        //fosterable
-        echo "<p class='petsinfo'> <b>Fosterable: </b>";
-        if ($row['is_fosterable' == "1"]) {
-            echo "Up for Foster";
-        }
-        else {
-            echo "Not Fosterable";
-        }
-        echo "</p>";
-
-        //extra notes
-        echo "<p class='petsinfo'> <b>Extra notes: </b>";
-        echo $notes = $row['notes'];
-        echo "</p>";
-
-        echo  "</div>";
-        echo  "</div>";
-        echo  "</div>";
     
     }    
     echo  "</div>";
-    // $name =  $row['name'];
-    //     $dob = $row['dob'];
-    //     $sex =  $row['sex'] ;
-    //     $type = $row['type_of_animal'] ;
-    //     $color = $row['color'] ;
-    //     $breed = $row['breed'];
-    //     $vax = $row['is_vaccinated'];
-    //     $spayed = $row['is_spayed_neutered'];
-    //     $shelter = $row['shelter_name'];
-    //     $adopt = $row['is_adoptable'];
-    //     $foster = $row['is_fosterable'];
-    //     $notes = $row['notes'];
     
     mysqli_close($con);
     ?>
