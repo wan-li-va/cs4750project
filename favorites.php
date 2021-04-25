@@ -23,21 +23,14 @@
     <!-- EXTERNAL CSS -->
     <link href="./styles/style.css" rel="stylesheet" type="text/css" />
 </head>
-<?php include "./navbar.php" ?>
+<?php 
+require('connect-db.php');
+include "./navbar.php"; ?>
 <body>
     <div class="body">
     <div class="sketchy">
             <h1 class="title"> Favorite Pets</h1>
         </div>
-    <?php
-    require_once('./connect-db.php');
-    $con = new mysqli($hostname, $username, $password, $dbname);
-    // Check connection
-    if (mysqli_connect_errno()) {
-    echo("Can't connect to MySQL Server. Error code: " .
-    mysqli_connect_error());
-    return null;
-    }?>
 <!-- 
     <table cellspacing='4' cellpadding='4'>
         <tr>
@@ -56,8 +49,20 @@
         </tr> -->
     <?php
     // Form the SQL query (a SELECT query)
-    $sql="SELECT * FROM favorites ORDER BY name";
-    $result = mysqli_query($con,$sql);
+    if (!isset($_SESSION['user']))
+    {
+        echo "<script>
+        alert('You are not logged in');
+        window.location.href='login.php';
+        </script>";
+    }
+    $user = $_SESSION['user'];
+    $query="SELECT * FROM favorites WHERE username = :username ORDER BY name";
+    $statement = $db->prepare($query);
+    $statement->bindParam(':username', $user);
+    $statement->execute();
+    $favorite_info = $statement->fetchAll();
+    $statement->closecursor();
     // Print the data from the table row by row
     // while($row = mysqli_fetch_array($result)) {
     //     echo "<td>" . $row['name'] . "</td>";
@@ -76,37 +81,42 @@
     //     echo "</tr>";
     // }
     
-    $output="";
-    $exeQuery = mysqli_query($con,$sql);
     $output="<h2>Welcome to Modern Business
             <div class='container'>
             <div class='row'>";
             
     echo "<div class='row'>";
-    while($row = mysqli_fetch_array($exeQuery)) {
-        // $name = $row['name'];
-        // $desciption = $row['desciption'];
-        // $ephoto = $row['ephoto'];
-        echo "<div class='col-sm-6'>";
-        echo  "<div class='card'>";
-        echo  "<div class='card-body'>"; 
-        if ($row['image'] != NULL) {
-          echo "<img class='favoritesimg' img src='";
-          echo $image = $row['image'];
-          echo "'> </img>";
-          }
-          else {
-              echo "<img class='favoritesimg' img src='https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/480px-No_image_available.svg.png'> </img>";
-          }
-          echo "<h1 style='text-align:center'>";
-          echo  $name =  $row['name'];
-          echo "</h1>";
-          
-          //Birthdate
-          echo "<p class='petsinfo'> <b> Birthdate (YYYY-MM-DD): </b>";
-          echo $dob = $row['dob'];
-          echo "</p>";
-          echo  "</div>";
-          echo  "</div>";
-          echo  "</div>";
-      }
+    if(empty($favorite_info))
+    {
+        echo "<h1>You have no favorites</h1>";
+    }
+    else
+    {
+        foreach ($favorite_info as $row) {
+            // $name = $row['name'];
+            // $desciption = $row['desciption'];
+            // $ephoto = $row['ephoto'];
+            echo "<div class='col-sm-6'>";
+            echo  "<div class='card'>";
+            echo  "<div class='card-body'>"; 
+            if ($row['image'] != NULL) {
+            echo "<img class='favoritesimg' img src='";
+            echo $image = $row['image'];
+            echo "'> </img>";
+            }
+            else {
+                echo "<img class='favoritesimg' img src='https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/480px-No_image_available.svg.png'> </img>";
+            }
+            echo "<h1 style='text-align:center'>";
+            echo  $name =  $row['name'];
+            echo "</h1>";
+            
+            //Birthdate
+            echo "<p class='petsinfo'> <b> Birthdate (YYYY-MM-DD): </b>";
+            echo $dob = $row['dob'];
+            echo "</p>";
+            echo  "</div>";
+            echo  "</div>";
+            echo  "</div>";
+        }
+    }
