@@ -127,7 +127,7 @@
 
         //Sex, ASSUME THE LETTER IS CAPITALIZED
         echo "<p class='petsinfo'> <b> Sex: </b>";
-        if ($row['sex' == "F"]) {
+        if ($row['sex'] == "F") {
             echo "Female";
         }
         else {
@@ -211,7 +211,14 @@
         echo '<input type="hidden" name="pName" value="' . $row['name'] .'" />';
         echo '<input type="hidden" name="pDOB" value="' . $row['dob'] .'" />';
 
-        echo '<input type="submit" value="★" name="action" class="btn btn-primary" />';
+        
+        echo '<form action="' . htmlspecialchars($_SERVER["PHP_SELF"]) . '"method="post">';
+        echo '<input class="favoritebtn" type="submit" value="★" name="action" />';
+        echo '<input type="hidden" name="pName" value="' . $row['name'] .'" />';
+        echo '<input type="hidden" name="pDOB" value="' . $row['dob'] .'" />';
+        echo '<input type="hidden" name="pImg" value="' . $row['image'] .'" />';
+        
+
         echo "</div>";
         echo "</form>";
 

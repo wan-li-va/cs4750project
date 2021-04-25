@@ -60,6 +60,12 @@ a:hover {
     font-family: 'Rubik', sans-serif;
 }
 
+.favoritebtn {
+    background: #2f4962 !important;
+    color: white !important;
+    font-family: 'Rubik', sans-serif;
+}
+
 /* favorites page */
 .favoritesimg {
     
