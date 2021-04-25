@@ -30,29 +30,15 @@
 <?php
     //checks that the user is logged in
     if (isset($_SESSION['user'])){
-        if (!isset($_SESSION['id']))
-        {
-            echo "<script>
-                alert('Nothing to add, returning home');
-                window.location.href='home.php';
-                </script>";
-        }
         //checks for post
         if ($_SERVER["REQUEST_METHOD"] == "POST")
         {
-            if (!empty($_POST['action']) && ($_POST['action'] == 'Cancel'))
-            {
-                unset($_SESSION['id']);
-                header("Location: pets.php");
-            }
-            else
-            {
                 $username = $_SESSION['user'];
                 $name = $_POST['pName'];
                 $dob = $_POST['pDOB'];
                 $image = $_POST['pImg'];
-                $query = "INSERT INTO favorites (username, name, dob, image) 
-                    VALUES (:username, :name, :dob, :image)";
+                $query = "INSERT INTO favorites (name, dob, image) 
+                    VALUES (:name, :dob, :image)";
                 $statement = $db->prepare($query);
                 $statement->bindValue(':username', $_SESSION['id']);
                 $statement->bindValue(':name', $name);
@@ -65,7 +51,5 @@
                 alert('Pet added to favorites');
                 window.location.href='pets.php';
                 </script>";
-            }
-
         }
 ?>
