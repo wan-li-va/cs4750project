@@ -33,7 +33,8 @@
         <div class="sketchy">
             <h1 class="title"> Pets</h1>
         </div>
-
+        <a class="btn btn-lg" href="favorites.php"> Your Favorite Pets </a>
+        <br>
     <?php
     require_once('./connect-db.php');
     $con = new mysqli($hostname, $username, $password, $dbname);
