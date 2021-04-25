@@ -68,11 +68,11 @@
                       <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" id="login" name="insert" method="POST">
                         <div class="form-group">
                         <span class = "label">Username</span>
-                          <input type="text" id="full_name" name="username" class="form-control">
+                          <input type="text" id="full_name" name="username" class="form-control" required>
                         </div>
                         <div class="form-group">
                             <span class = "label">Password</span>
-                          <input type="password" id="password" name="password" class="form-control">
+                          <input type="password" id="password" name="password" class="form-control" required>
                         </div>
                         <div class="form-group text-center">
                           <input type="submit" name="submit" value="Login" class="btn btn-primary py-3 px-5">
