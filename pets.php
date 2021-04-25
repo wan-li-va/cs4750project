@@ -94,9 +94,9 @@
         echo  "<div class='card'>";
         echo  "<div class='card-body'>"; 
 
-        echo "<img src='";
+        echo "<img class='animalimg' img src='";
         echo $image = $row['image'];
-        echo "' width='500'> </img>";
+        echo "'> </img>";
 
         echo "<h1>";
         echo  $name =  $row['name'];

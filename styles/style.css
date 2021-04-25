@@ -12,6 +12,10 @@
     margin-left: 10vw;
 }
 
+.animalimg {
+    width: 20vw;
+    height: auto;
+}
 .btn{
     background: #2f4962 !important;
     color: white !important;
