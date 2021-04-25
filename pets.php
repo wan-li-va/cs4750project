@@ -91,18 +91,98 @@
         // $ephoto = $row['ephoto'];
         echo  "<div class='card'>";
         echo  "<div class='card-body'>"; 
+
+        echo "<img src=\"";
+        echo $image = $row['image'];
+        echo "\" width=\"500\"> </img>";
+
+        echo "<h1>";
         echo  $name =  $row['name'];
+        echo "</h1>";
+        
+        //Birthdate
+        echo "<b> Birthdate (YYYY-MM-DD): </b>";
         echo $dob = $row['dob'];
-        echo $sex =  $row['sex'] ;
+        echo "</p>";
+
+        //Sex, ASSUME THE LETTER IS CAPITALIZED
+        echo "<b> Sex: </b>";
+        if ($row['sex' == "F"]) {
+            echo "Female";
+        }
+        else {
+            echo "Male";
+        }
+        echo "</p>";
+
+        //Type of Animal
+        echo "<b> Animal: </b>";
         echo $type = $row['type_of_animal'];
+        echo "</p>";
+
+        //Color
+        echo "<b> Color: </b>";
         echo $color = $row['color'];
+        echo "</p>";
+
+        //Breed
+        echo "<b> Breed: </b>";
         echo $breed = $row['breed'];
-        echo $vax = $row['is_vaccinated'];
-        echo $spayed = $row['is_spayed_neutered'];
+        echo "</p>";
+
+
+        // Vaccinations
+        echo "<b> Vaccinations: </b>";
+        if ($row['is_vaccinated' == "1"]) {
+            echo "Up to Date";
+        }
+        else {
+            echo "Missing";
+        }
+        echo "</p>";
+
+        //spayed/neutered
+        echo "<b>Spayed/Neutered: </b>";
+        if ($row['is_spayed_neutered' == "1"]) {
+            echo "Yes";
+        }
+        else {
+            echo "No";
+        }
+        echo "</p>";
+
+
+        //shelter
+        echo "<b>Current Shelter: </b>";
         echo $shelter = $row['shelter_name'];
-        echo $adopt = $row['is_adoptable'];
-        echo $foster = $row['is_fosterable'];
+        echo "</p>";
+
+        //adoptable
+        echo "<b>Adoptable: </b>";
+        if ($row['is_adoptable' == "1"]) {
+            echo "Up for Adoption";
+        }
+        else {
+            echo "Not Up for Adoption";
+        }
+        echo "</p>";
+        
+
+        //fosterable
+        echo "<b>Fosterable: </b>";
+        if ($row['is_fosterable' == "1"]) {
+            echo "Up for Foster";
+        }
+        else {
+            echo "Not Fosterable";
+        }
+        echo "</p>";
+
+        //extra notes
+        echo "<b>Extra notes: </b>";
         echo $notes = $row['notes'];
+        echo "</p>";
+
         echo  "</div>";
         echo  "</div>";
     
