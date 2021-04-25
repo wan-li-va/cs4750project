@@ -68,3 +68,17 @@ a:hover {
     margin-left: auto;
     margin-right: auto;
 }
+
+.sketchy {
+    padding: 0 5vw;
+    display: inline-block;
+    border: 3px solid #333333;
+    font-size: 2.5rem;
+    border-radius: 2% 6% 5% 4% / 1% 1% 2% 4%;
+    text-transform: uppercase;
+    letter-spacing: 0.3ch;
+    background: #ffffff;
+    position: relative;
+    margin-bottom: 5vh;
+    font-family: 'Rubik', Arial;
+}
