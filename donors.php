@@ -60,31 +60,11 @@
 </head>
 
     <body>
+    <div class="body">
     <div class="sketchy">
-        <center><h1 class="title">List of Donors</h1>
-        <a>Thank you to everyone who has contributed to our causes. If you are interested in donating to a shelter, please <a href="contact.php">click to contact us</a>.</a></center>
-        
-    <!-- MODAL SCRIPT -->
-    <div class="modal fade" tabindex="-1" role="dialog" id="modal">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content"></div>
-      </div>
+        <h1 class="title">List of Donors</h1>
     </div>
-    <script type="text/javascript">
-      $(function () {
-
-        // brings up the modal when clicking the update button
-        $("addDonor").each(function () {
-          modalForm;
-        });
-
-        // necessary for the modal fading in and out
-          $(".alert").fadeTo(2000, 500).slideUp(500, function(){
-            $(".alert").slideUp(500);
-          });
-
-          });
-    </script>
+    <center><a>Thank you to everyone who has contributed to our causes. If you are interested in donating to a shelter, please <a href="contact.php">click to contact us</a>.</a></center>
 
     <!-- FOR ADMINS ONLY -->
     <?php if (isset($_SESSION['user'])){

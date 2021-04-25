@@ -44,7 +44,7 @@
             if (!empty($_POST['action']) && ($_POST['action'] == 'Cancel'))
             {
                 unset($_SESSION['id']);
-                header("Location: home.php");
+                header("Location: employees.php");
             }
             else
             {
@@ -68,7 +68,7 @@
       <!-- a form -->
       <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" name="editForm" method="post">
 
-        <h4>Are you sure you want to remove <?php echo "User: "; echo $_SESSION['id'];?> as an employee</h4>
+        <h4>Are you sure you want to remove <?php echo "User: "; echo $_SESSION['id'];?> as an employee?</h4>
           
             <div class="row">
                 <div class="form-group col-md">
