@@ -219,6 +219,7 @@
         echo '<input type="hidden" name="pImg" value="' . $row['image'] .'" />';
         
         
+        //idk if these closing tags for this section line up
         echo "</div>";
         echo "</form>";
 
