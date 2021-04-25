@@ -26,6 +26,9 @@
 <?php include "./navbar.php" ?>
 <body>
     <div class="body">
+    <div class="sketchy">
+            <h1 class="title"> Favorite Pets</h1>
+        </div>
     <?php
     require_once('./connect-db.php');
     $con = new mysqli($hostname, $username, $password, $dbname);
