@@ -12,10 +12,6 @@
     margin-left: 10vw;
 }
 
-.animalimg {
-    width: 15vw;
-    height: auto;
-}
 .btn{
     background: #2f4962 !important;
     color: white !important;
@@ -44,5 +40,18 @@ a:hover {
 }
 .h2 {
     color: #031927;
+    font-family: 'Rubik', sans-serif;
+}
+
+/* pets page */
+
+.animalimg {
+    width: 15vw;
+    height: auto;
+}
+
+.petsinfo {
+    color:#031927;
+    font-size:18px;
     font-family: 'Rubik', sans-serif;
 }

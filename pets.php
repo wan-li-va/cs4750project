@@ -98,17 +98,17 @@
         echo $image = $row['image'];
         echo "'> </img>";
 
-        echo "<h1>";
+        echo "<h1 style='text-align:center'>";
         echo  $name =  $row['name'];
         echo "</h1>";
         
         //Birthdate
-        echo "<b> Birthdate (YYYY-MM-DD): </b>";
+        echo "<p class='petsinfo'> <b> Birthdate (YYYY-MM-DD): </b>";
         echo $dob = $row['dob'];
         echo "</p>";
 
         //Sex, ASSUME THE LETTER IS CAPITALIZED
-        echo "<b> Sex: </b>";
+        echo "<p class='petsinfo'> <b> Sex: </b>";
         if ($row['sex' == "F"]) {
             echo "Female";
         }
@@ -118,23 +118,23 @@
         echo "</p>";
 
         //Type of Animal
-        echo "<b> Animal: </b>";
+        echo "<p class='petsinfo'> <b> Animal: </b>";
         echo $type = $row['type_of_animal'];
         echo "</p>";
 
         //Color
-        echo "<b> Color: </b>";
+        echo "<p class='petsinfo'> <b> Color: </b>";
         echo $color = $row['color'];
         echo "</p>";
 
         //Breed
-        echo "<b> Breed: </b>";
+        echo "<p class='petsinfo'> <b> Breed: </b>";
         echo $breed = $row['breed'];
         echo "</p>";
 
 
         // Vaccinations
-        echo "<b> Vaccinations: </b>";
+        echo "<p class='petsinfo'> <b> Vaccinations: </b>";
         if ($row['is_vaccinated' == "1"]) {
             echo "Up to Date";
         }
@@ -144,7 +144,7 @@
         echo "</p>";
 
         //spayed/neutered
-        echo "<b>Spayed/Neutered: </b>";
+        echo "<p class='petsinfo'> <b>Spayed/Neutered: </b>";
         if ($row['is_spayed_neutered' == "1"]) {
             echo "Yes";
         }
@@ -155,12 +155,12 @@
 
 
         //shelter
-        echo "<b>Current Shelter: </b>";
+        echo "<p class='petsinfo'> <b>Current Shelter: </b>";
         echo $shelter = $row['shelter_name'];
         echo "</p>";
 
         //adoptable
-        echo "<b>Adoptable: </b>";
+        echo "<p class='petsinfo'> <b>Adoptable: </b>";
         if ($row['is_adoptable' == "1"]) {
             echo "Up for Adoption";
         }
@@ -171,7 +171,7 @@
         
 
         //fosterable
-        echo "<b>Fosterable: </b>";
+        echo "<p class='petsinfo'> <b>Fosterable: </b>";
         if ($row['is_fosterable' == "1"]) {
             echo "Up for Foster";
         }
@@ -181,7 +181,7 @@
         echo "</p>";
 
         //extra notes
-        echo "<b>Extra notes: </b>";
+        echo "<p class='petsinfo'> <b>Extra notes: </b>";
         echo $notes = $row['notes'];
         echo "</p>";
 
