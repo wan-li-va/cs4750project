@@ -46,8 +46,8 @@ a:hover {
 /* pets page */
 
 .animalimg {
-    width: 15vw;
-    height: auto;
+    max-width: 15vw;
+    max-height: 10vw;
 }
 
 .petsinfo {
