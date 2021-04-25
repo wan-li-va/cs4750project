@@ -1,5 +1,4 @@
-<?php session_start(); ?>
-
+<?php session_start();?>
 <link href="./styles/navbar.css" rel="stylesheet" type="text/css" />
 <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -36,6 +35,9 @@
                     <a class="nav-link" href="settings.php">Settings</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="donors.php">Donors</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="contact.php">Contact Us</a>
                 </li>
                 <!-- LOG IN BUTTON, REDIRECTS TO LOGIN PAGE -->
@@ -48,6 +50,5 @@
                 </li>
             </ul>
         </div>
-
     </nav>
 </header>

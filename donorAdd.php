@@ -30,55 +30,38 @@
 <?php
     //checks that the user is logged in
     if (isset($_SESSION['user'])){
-        //checks that there is a course set to edit
-        if (!isset($_SESSION['id']))
-        {
-            echo "<script>
-                alert('Nothing to edit, returning home');
-                window.location.href='home.php';
-                </script>";
-        }
-        $id = $_SESSION['id'];
-
-        $query = "SELECT * FROM employees WHERE username = :username";
-        $statement = $db->prepare($query);
-        $statement->bindParam(':username', $id);
-        $statement->execute();
-            
-        // fetchAll() returns an array for all of the rows in the result set
-        $user_info = $statement->fetchAll();
-        // closes the cursor and frees the connection to the server so other SQL statements may be issued
-        $statement->closecursor();
-        $pieces = explode("-", $user_info[0]['start_date']);
-
         //checks for post
         if ($_SERVER["REQUEST_METHOD"] == "POST")
         {
             if (!empty($_POST['action']) && ($_POST['action'] == 'Cancel'))
             {
                 unset($_SESSION['id']);
-                header("Location: employees.php");
+                header("Location: donors.php");
             }
             else
             {
+                $first_name = $_POST['first_name'];
+                $last_name = $_POST['last_name'];
                 $shelter_name = $_POST['shelter_name'];
-                $month = $_POST['start_month'];
-                $day = $_POST['start_day'];
-                $year = $_POST['start_year'];
-                $start_Date = $year . "-" . $month . "-" . $day;
-
-                $query = "UPDATE employees SET shelter_name=:shelter_name, start_date=:start_date
-                    WHERE username=:username";
+                $month = $_POST['donation_month'];
+                $day = $_POST['donation_day'];
+                $year = $_POST['donation_year'];
+                $donation_date = $year . "-" . $month . "-" . $day;
+                $donation_amount = $_POST['donation_amt'];
+                $query = "INSERT INTO donors (first_name, last_name, donation_date, shelter_name, donation_amount) 
+                    VALUES (:first_name, :last_name, :donation_date, :shelter_name, :donation_amount)";
                 $statement = $db->prepare($query);
+                $statement->bindValue(':first_name', $first_name);
+                $statement->bindValue(':last_name', $last_name);
                 $statement->bindValue(':shelter_name', $shelter_name);
-                $statement->bindValue(':start_date', $start_Date);                
-                $statement->bindValue(':username', $_SESSION['id']);
+                $statement->bindValue(':donation_date', $donation_date);    
+                $statement->bindValue(':donation_amount', $donation_amount);            
                 $statement->execute();
                 $statement->closeCursor();
                 unset($_SESSION['id']);
                 echo "<script>
-                alert('Info updated');
-                window.location.href='employees.php';
+                alert('Donor added to table');
+                window.location.href='donors.php';
                 </script>";
             }
 
@@ -86,47 +69,59 @@
 ?>
 
 <div class="container" style="text-align: center;">
-      
-        <h4>
-            Editing Employee <?php if(isset($user_info[0]["username"])){echo $user_info[0]["username"];}?>
-        </h4>
-        <!-- a form -->
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" name="editForm" method="post">
+      </br>
+      <!-- a form -->
+      <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" name="editForm" method="post">
 
-            <div class="form-group">
+        <h4>Are you sure you want to add this donor?</h4>
+          
+        <div class="form-group">
                 <div class="form-row">
                     <div class = "col">
-                        <label for="shelter_name">Shelter Name</label>
-                        <input type="text" class="form-control" name="shelter_name" id="shelter_name" placeholder="Enter the shelter" required
-                            value="<?php echo $user_info[0]['shelter_name'];?>">
+                        <label for="first_name">First Name</label>
+                        <input type="text" class="form-control" id="first_name" name="first_name" placeholder="Enter the first name" required>
                     </div>
+                    <div class = "col">
+                        <label for="last_name">Last Name</label>
+                        <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Enter the last name" required>
+                    </div>
+                </div>
+                <span class="error_message" id="msg_name"></span>  
+            </div>
+            <div class="form-row">
+                    <div class = "col">
+                        <label for="shelter_name">Which shelter?</label>
+                        <input type="text" class="form-control" id="shelter_name" name="shelter_name" placeholder="Enter the shelter name" required>
+                    </div>
+                    <div class = "col">
+                        <label for="donation_amt">Donation Amount</label>
+                        <input type="number" class="form-control" id="donation_amt" name="donation_amt" placeholder="Amount (in $)" min="1" required>
+                    </div>
+                </div>
+                </br>
+            <div class="form-group">
+                <h5>Donation Date</h5>
+                <div class="form-row">
+                    <div class = "col">
+                        <label for="donation_month">Donation Month</label>
+                        <input type="number" class="form-control" id="donation_month" name="donation_month" placeholder="Enter month" required
+                            maxlength="2" min="1" max="12">
+                    </div>
+                    <div class = "col">
+                        <label for="donation_day">Donation Day</label>
+                        <input type="number" class="form-control" id="donation_day" name="donation_day" placeholder="Enter day" required
+                            maxlength="2" min="1" max="31">
+                    </div> 
+                    <div class = "col">
+                        <label for="donation_year">Donation Year</label>
+                        <input type="number" class="form-control" id="donation_year" name="donation_year" placeholder="Enter year" required
+                            maxlength="4" min="1900" max="2021">
+                    </div> 
                 </div>  
                 <span class="error_message" id="msg_name"></span>  
             </div>
-            </br>
-            <div class="form-group">
-                <h5>Start Date</h5>
-                <div class="form-row">
-                    
-                    <div class = "col">
-                        <label for="start_month">Start Month</label>
-                        <input type="number" class="form-control" name="start_month" id="start_month" placeholder="Enter start month" required
-                            maxlength="2" min="1" max="12" value="<?php echo $pieces[1];?>">
-                    </div>
-                    <div class = "col">
-                        <label for="start_day">Start Day</label>
-                        <input type="number" class="form-control" name="start_day" id="start_day" placeholder="Enter start day" required
-                            maxlength="2" min="1" max="31"value="<?php echo $pieces[2];?>">
-                    </div> 
-                    <div class = "col">
-                        <label for="start_year">Start Year</label>
-                        <input type="number" class="form-control" name="start_year" id="start_year" placeholder="Enter start year" required
-                            maxlength="4" min="1900" max="2021" value="<?php echo $pieces[0];?>">
-                    </div> 
-                </div>  
-                <span class="error_message" id="msg_name"></span>  
-            </div>
 
+                </br>
             <div class="row">
                 <div class="form-group col-md">
                 <button type="submit" class="btn btn-primary">Submit</button>
@@ -136,10 +131,8 @@
                 <input type="submit" value="Cancel" name="action" class="btn btn-secondary" />
                 </div>
             </div>
-          
         </form>
           
-  
 </div>
 
 <?php
@@ -152,4 +145,3 @@
                 </script>";
     }
 ?>
-

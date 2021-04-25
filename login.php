@@ -1,7 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php 
-  require('connect-db.php');?>
+  require('connect-db.php');
+  include "./navbar.php";
+
+  if(isset($_POST['submit'])){
+  
+      $user = $_POST['username'];
+      $passwordstr = $_POST['password'];
+      $query = "SELECT password FROM login WHERE username = '$user'";
+  
+      $statement = $db->prepare($query);
+      $statement->execute();
+      $results = $statement->fetchAll();
+      
+      if (!empty($results)){
+          {
+          //verify that the typed password matches the hashed password in the table
+            if (password_verify($passwordstr, $results[0]['password'])) 
+            {            
+              $_SESSION['user'] = $user;
+              header("Location: home.php");
+            } 
+            else{
+              echo "<div class=\"text-center\">That's the wrong password. Please try again.</div>";
+            }
+          }
+      }
+      else{
+        echo "<div class=\"text-center\">That account doesn't exist.</div>";
+      }
+  }
+      ?>
+      
     <head>
     <link rel="apple-touch-icon" sizes="180x180" href="icon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="icon/favicon-32x32.png">
@@ -28,36 +59,6 @@
        
     </head>
     <body>
-    <?php include "./navbar.php";
-
-if(isset($_POST['submit'])){
-
-    $user = $_POST['username'];
-    $passwordstr = $_POST['password'];
-    $query = "SELECT password FROM login WHERE username = '$user'";
-
-    $statement = $db->prepare($query);
-    $statement->execute();
-    $results = $statement->fetchAll();
-    
-    if (!empty($results)){
-        {
-        //verify that the typed password matches the hashed password in the table
-          if (password_verify($passwordstr, $results[0]['password'])) 
-          {            
-            $_SESSION['user'] = $user;
-            header("Location: home.php");
-          } 
-          else{
-            echo "<div class=\"text-center\">That's the wrong password. Please try again.</div>";
-          }
-        }
-    }
-    else{
-      echo "<div class=\"text-center\">That account doesn't exist.</div>";
-    }
-}
-    ?>
 
       <div class="container">
         <div class="row">

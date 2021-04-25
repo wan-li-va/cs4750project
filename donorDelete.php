@@ -44,19 +44,19 @@
             if (!empty($_POST['action']) && ($_POST['action'] == 'Cancel'))
             {
                 unset($_SESSION['id']);
-                header("Location: employees.php");
+                header("Location: donors.php");
             }
             else
             {
-                $query = "DELETE FROM employees WHERE username=:username";
+                $query = "DELETE FROM donors WHERE last_name=:last_name";
                 $statement = $db->prepare($query);
-                $statement->bindValue(':username', $_SESSION['id']);
+                $statement->bindValue(':last_name', $_SESSION['id']);
                 $statement->execute();
                 $statement->closeCursor();
                 unset($_SESSION['id']);
                 echo "<script>
-                alert('User removed from employees');
-                window.location.href='home.php';
+                alert('User removed from donors');
+                window.location.href='donors.php';
                 </script>";
             }
 
@@ -65,10 +65,9 @@
 
 <div class="container" style="text-align: center;">
       </br>
-      <!-- a form -->
       <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" name="editForm" method="post">
 
-        <h4>Are you sure you want to remove <?php echo "User: "; echo $_SESSION['id'];?> as an employee?</h4>
+        <h4>Are you sure you want to remove <?php echo "Donor with last name: "; echo $_SESSION['id'];?> as an donor?</h4>
           
             <div class="row">
                 <div class="form-group col-md">
@@ -95,4 +94,3 @@
                 </script>";
     }
 ?>
-

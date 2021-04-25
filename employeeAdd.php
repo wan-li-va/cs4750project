@@ -44,7 +44,7 @@
             if (!empty($_POST['action']) && ($_POST['action'] == 'Cancel'))
             {
                 unset($_SESSION['id']);
-                header("Location: home.php");
+                header("Location: employees.php");
             }
             else
             {
@@ -65,7 +65,7 @@
                 unset($_SESSION['id']);
                 echo "<script>
                 alert('User added into employees');
-                window.location.href='home.php';
+                window.location.href='employees.php';
                 </script>";
             }
 
@@ -77,7 +77,7 @@
       <!-- a form -->
       <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" name="editForm" method="post">
 
-        <h4>Are you sure you want to add <?php echo "User: "; echo $_SESSION['id'];?> to employees</h4>
+        <h4>Are you sure you want to add <?php echo "User: "; echo $_SESSION['id'];?> to employees?</h4>
           
         <div class="form-group">
                 <div class="form-row">
@@ -137,4 +137,3 @@
                 </script>";
     }
 ?>
-
