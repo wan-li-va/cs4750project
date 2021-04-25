@@ -210,8 +210,6 @@
         echo '<input type="submit" value="Update" name="action" class="btn btn-primary" style="margin-right:2em;"/>';
         echo '<input type="hidden" name="pName" value="' . $row['name'] .'" />';
         echo '<input type="hidden" name="pDOB" value="' . $row['dob'] .'" />';
-        echo "</div>";
-        echo "</form>";
 
         
         echo '<form action="' . htmlspecialchars($_SERVER["PHP_SELF"]) . '"method="post">';
@@ -220,6 +218,8 @@
         echo '<input type="hidden" name="pDOB" value="' . $row['dob'] .'" />';
         echo '<input type="hidden" name="pImg" value="' . $row['image'] .'" />';
         
+        
+        echo "</div>";
         echo "</form>";
 
         echo  "</div>";
