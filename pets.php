@@ -94,9 +94,14 @@
         echo  "<div class='card'>";
         echo  "<div class='card-body'>"; 
 
+        if ($row['image'] != NULL) {
         echo "<img class='animalimg' img src='";
         echo $image = $row['image'];
         echo "'> </img>";
+        }
+        else {
+            echo "<img class='animalimg' img src='https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/480px-No_image_available.svg.png'> </img>";
+        }
 
         echo "<h1 style='text-align:center'>";
         echo  $name =  $row['name'];
