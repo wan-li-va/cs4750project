@@ -258,7 +258,7 @@
     
 </div>
 </div>
-<button class="scrollToTopBtn">TOP</button>
+<button class="scrollToTopBtn">▲</button>
 </body>
 
 <script>
