@@ -25,7 +25,52 @@
     <link href="./styles/style.css" rel="stylesheet" type="text/css" />
 </head>
 
-<?php include "./navbar.php" ?>
+<?php 
+    if ($_SERVER['REQUEST_METHOD'] == 'POST')
+    {
+        if (!empty($_POST['action']) && ($_POST['action'] == 'Update'))
+        {
+            $_SESSION['pDOB'] = $_POST['pDOB'];
+            $_SESSION['pName'] = $_POST['pName'];
+            header("Location: petUpdate.php");
+        }
+    }
+
+    require_once('./connect-db.php');
+    include "./navbar.php"; 
+    $con = new mysqli($hostname, $username, $password, $dbname);
+    // Check connection
+    if (mysqli_connect_errno()) 
+    {
+        echo("Can't connect to MySQL Server. Error code: " .
+        mysqli_connect_error());
+        return null;
+    }
+    $loggedIn = False;
+    $manager = False;
+    if (isset($_SESSION['user']))
+    {
+        $loggedIn = True;
+        $user = $_SESSION['user'];
+
+        $query = "SELECT * FROM users WHERE username = :username";
+        $statement = $db->prepare($query);
+        $statement->bindParam(':username', $user);
+        $statement->execute();
+                
+        // fetchAll() returns an array for all of the rows in the result set
+        $user_info = $statement->fetchAll();
+                
+        // closes the cursor and frees the connection to the server so other SQL statements may be issued
+        $statement->closecursor();
+        if($user_info[0]['role'] == 'admin' || $user_info[0]['role'] == 'manager')
+        {
+            $manager = True;
+        }       
+    
+    }  
+     
+?>
 
 
 <body>
@@ -33,17 +78,20 @@
         <div class="sketchy">
             <h1 class="title"> Pets</h1>
         </div>
-        <a class="btn btn-lg" href="favorites.php"> Your Favorite Pets </a>
+        <?php
+        if($loggedIn)
+        echo "<a class='btn btn-lg' href='favorites.php'> Your Favorite Pets </a>";
+        ?>
         <br>
-    <?php
-    require_once('./connect-db.php');
-    $con = new mysqli($hostname, $username, $password, $dbname);
-    // Check connection
-    if (mysqli_connect_errno()) {
-    echo("Can't connect to MySQL Server. Error code: " .
-    mysqli_connect_error());
-    return null;
-    }?>
+        <?php
+        if($manager)
+        {
+            echo "<a class='btn btn-lg' href='petAdd.php'> Add a pet </a>";
+        }
+        
+        ?>
+        <br>
+
 <!-- 
     <table cellspacing='4' cellpadding='4'>
         <tr>
@@ -65,10 +113,7 @@
     // Form the SQL query (a SELECT query)
     $sql="SELECT * FROM pets ORDER BY name";
     $result = mysqli_query($con,$sql);
-    $loggedIn = False;
-    if (isset($_SESSION['user'])){
-        $loggedIn = True;
-    }
+    
     // Print the data from the table row by row
     // while($row = mysqli_fetch_array($result)) {
     //     echo "<td>" . $row['name'] . "</td>";
@@ -198,6 +243,16 @@
         echo "<p class='petsinfo'> <b>Extra notes: </b>";
         echo $notes = $row['notes'];
         echo "</p>";
+
+        //pet edit
+        echo "<p class='petsinfo'>";
+        echo '<form action="' . htmlspecialchars($_SERVER["PHP_SELF"]) . '"method="post">';
+        echo "<div style='text-align:center'>";
+        echo '<input type="submit" value="Update" name="action" class="btn btn-primary" />';
+        echo '<input type="hidden" name="pName" value="' . $row['name'] .'" />';
+        echo '<input type="hidden" name="pDOB" value="' . $row['dob'] .'" />';
+        echo "</div>";
+        echo "</form>";
 
         echo  "</div>";
         echo  "</div>";
