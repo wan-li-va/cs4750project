@@ -30,7 +30,6 @@
 <?php
     //checks that the user is logged in
     if (isset($_SESSION['user'])){
-        //checks that there is a course set to edit
         if (!isset($_SESSION['id']))
         {
             echo "<script>
