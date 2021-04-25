@@ -75,7 +75,7 @@
         $statement->execute();
         $logged_in_info = $statement->fetchAll();
         $statement->closecursor();
-        if($logged_in_info[0]['role'] == 'admin')?>
+        if($logged_in_info[0]['role'] == 'admin' || $logged_in_info[0]['role'] == 'manager')?>
             <center><a href="donorAdd.php" id="addDonor">Click to add a donor to this table.</a></center>
         <?php
         }
@@ -100,7 +100,7 @@
                 <th>Shelter Name</th>
                 <th>Donation Amount</th>
                 <?php if (isset($_SESSION['user'])){
-                    if($logged_in_info[0]['role'] == 'admin')?>
+                    if($logged_in_info[0]['role'] == 'admin' || $logged_in_info[0]['role'] == 'manager')?>
                 <th>Admin Controls</th>
                 <?php }?>  
             </tr>
