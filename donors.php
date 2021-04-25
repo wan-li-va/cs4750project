@@ -53,7 +53,7 @@
             if (!empty($_POST['action']) && ($_POST['action'] == 'Update'))
             {
                 $_SESSION['id'] = $_POST['username'];
-                header("Location: managerChange.php");
+                header("Location: donorEdit.php");
 
             }
         }
@@ -85,48 +85,19 @@
           });
     </script>
 
-    <!-- THE MODAL ITSELF -->
-    <div id="myModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <center><h2>Add Donor</h2></center>
-    <form action="add" method="POST">
-        <div class="form-group col-md-12">
-            <label for="do_name">Data Object Name</label>
-            <input type="text" name="do_name" class="form-control" placeholder="Data Object Name">
-        </div>
-
-        <div class="form-row">
-            <div class="form-group col-md-4">
-                <label for="source_app_cd">Source Application Code</label>
-                <input type="text" class="form-control" name="source_app_code" placeholder="Source Application Code">
-            </div>
-
-            <div class="form-group col-md-4">
-                <label for="source_cd">Source Code</label>
-                <input type="text" class="form-control" name="source_cd" placeholder="Source Code">
-            </div>
-
-            <div class="form-group col-md-4">
-                <label for="tenant_id">Tenant ID</label>
-                <input type="number" class="form-control" name="tenant_id" placeholder="Tenant ID">
-            </div>
-        </div>
-
-        <div class="form-group col-md-12">
-            <label for="data_object_desc">Data Object Description</label>
-            <textarea class="form-control" name="data_object_desc" rows="2" placeholder="Data Object Description"></textarea>
-        </div>
-        <center><button type="submit" class="btn btn-primary">Submit</button></center>
-    </form>
-        </div>
-    </div>
-
     <!-- FOR ADMINS ONLY -->
-    <? if (isset($_SESSION['user']))
-        {if($user_info[0]['role'] == 'admin'){?>
-            <center><a>To add a donor to this table, click <a href="admin.php" id="addDonor">here</a>.</a></center>
-        <?}}
+    <?php if (isset($_SESSION['user'])){
+        $user = $_SESSION['user'];
+        $query = "SELECT * FROM users WHERE username = :username";
+        $statement = $db->prepare($query);
+        $statement->bindParam(':username', $user);
+        $statement->execute();
+        $logged_in_info = $statement->fetchAll();
+        $statement->closecursor();
+        if($logged_in_info[0]['role'] == 'admin')?>
+            <center><a href="donorAdd.php" id="addDonor">Click to add a donor to this table.</a></center>
+        <?php
+        }
     ?>
 
     </div>
@@ -147,7 +118,10 @@
                 <th>Donation Date</th>
                 <th>Shelter Name</th>
                 <th>Donation Amount</th>
+                <?php if (isset($_SESSION['user'])){
+                    if($logged_in_info[0]['role'] == 'admin'){?>
                 <th>Admin Controls</th>
+                <?php }} ?>  
             </tr>
             <?php foreach ($user_info as $g): ?>
             <tr>
@@ -166,8 +140,8 @@
                 <td>
                     <?php echo '$' . $g['donation_amount']; ?> 
                 </td>
-                <? if (isset($_SESSION['user'])){
-                    if($user_info[0]['role'] == 'admin'){?>
+                <?php if (isset($_SESSION['user'])){
+                    if($logged_in_info[0]['role'] == 'admin'){?>
                 <td>
                 <!-- Update data object button on each row -->
                     <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
@@ -180,7 +154,7 @@
                         <!-- <input type="hidden" name="username" /> -->
                     </form>    
                 </td>
-                <?}} ?>                                                  
+                <?php }} ?>                                                  
             </tr>
             <?php endforeach; ?>
 
