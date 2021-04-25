@@ -58,7 +58,7 @@
                 $statement->bindValue(':username', $_SESSION['id']);
                 $statement->bindValue(':name', $name);
                 $statement->bindValue(':dob', $dob);                
-                $statement->bindValue(':image', $image;
+                $statement->bindValue(':image', $image);
                 $statement->execute();
                 $statement->closeCursor();
                 unset($_SESSION['id']);
