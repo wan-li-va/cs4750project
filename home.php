@@ -22,7 +22,7 @@
     <!-- ICON  -->
     <link rel="shortcut icon" href="https://pngimg.com/uploads/paw/paw_PNG21.png" type="image/ico" />
     <!-- EXTERNAL CSS -->
-    <link href="./styles/style.css" rel="stylesheet" type="text/css" />
+    <link href="./styles/home.css" rel="stylesheet" type="text/css" />
 </head>
 
 <?php include "./navbar.php";?>
@@ -38,24 +38,70 @@
                 </center>
             </div>
           </div>
-          <div class="container">
-            <div class="row">
-              <div class="col-sm" style="text-align:center">
-                <img src="https://www.humanesociety.org/sites/default/files/styles/1240x698/public/2020-07/kitten-510651.jpg?h=f54c7448&itok=ZhplzyJ9" style="width:300px; border:10px solid #efc164">
-                <h1 class="display-6">Bell</h1>
-                <a href="">Learn More</a>
-                </div>
-                <div class="col-sm" style="text-align:center">
-                <img src="https://www.humanesociety.org/sites/default/files/styles/1240x698/public/2020-07/kitten-510651.jpg?h=f54c7448&itok=ZhplzyJ9" style="width:300px; border:10px solid #efc164">
-                <h1 class="display-6">Bell</h1>
-                <a href="">Learn More</a>
-                </div>
-                <div class="col-sm" style="text-align:center">
-                <img src="https://www.humanesociety.org/sites/default/files/styles/1240x698/public/2020-07/kitten-510651.jpg?h=f54c7448&itok=ZhplzyJ9" style="width:300px; border:10px solid #efc164">
-                <h1 class="display-6">Bell</h1>
-                <a href="">Learn More</a>
-                </div>
-            </div>
+          <!-- Slideshow container -->
+          <div class="slideshow-container">
+
+          <!-- Full-width images with number and caption text -->
+          <div class="mySlides">
+            <div class="numbertext">1 / 3</div>
+            <img class="carouselimg" img src="https://cdn.mos.cms.futurecdn.net/VSy6kJDNq2pSXsCzb6cvYF.jpg">
+            <div class="text">Kiki</div>
+          </div>
+
+          <div class="mySlides">
+            <div class="numbertext">2 / 3</div>
+            <img class="carouselimg" img src="https://dfw.cbslocal.com/wp-content/uploads/sites/15909545/2020/03/cc.jpg">
+            <div class="text">Mister Business</div>
+          </div>
+
+          <div class="mySlides">
+            <div class="numbertext">3 / 3</div>
+            <img class="carouselimg" img src="https://www.humanesociety.org/sites/default/files/styles/1240x698/public/2020-07/kitten-510651.jpg?h=f54c7448&itok=ZhplzyJ9">
+            <div class="text">Bell</div>
+          </div>
+
+          <!-- Next and previous buttons -->
+          <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+          <a class="next" onclick="plusSlides(1)">&#10095;</a>
+          </div>
+          <br>
+
+          <!-- The dots/circles -->
+          <div style="text-align:center">
+          <span class="dot" onclick="currentSlide(1)"></span>
+          <span class="dot" onclick="currentSlide(2)"></span>
+          <span class="dot" onclick="currentSlide(3)"></span>
           </div>
     </body>
 </body>
+
+<script>
+  var slideIndex = 1;
+showSlides(slideIndex);
+
+// Next/previous controls
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+// Thumbnail image controls
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("dot");
+  if (n > slides.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+  }
+  for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";
+  dots[slideIndex-1].className += " active";
+}
+</script>

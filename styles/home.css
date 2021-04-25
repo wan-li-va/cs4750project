@@ -1,0 +1,200 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap');
+
+.body {
+    display: flex;
+    flex-direction: column;
+    margin: 4vw 4vw 4vw 4vw;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Rubik', Arial;
+}
+
+.mainimg {
+    margin-left: 10vw;
+}
+
+.btn{
+    background: #2f4962 !important;
+    color: white !important;
+    font-family: 'Rubik', sans-serif;
+}
+
+.btn-lg{
+    background: #2f4962;
+    color: white;
+    font-family: 'Rubik', sans-serif;
+}
+
+.h1 {
+    color: #031927;
+    font-family: 'Rubik', sans-serif;
+}
+
+a{
+    color:#031927 !important; 
+    font-size:20px;
+    font-family: 'Rubik', sans-serif;
+}
+
+a:hover {
+    color: #6DB8E5 !important;
+}
+.h2 {
+    color: #031927;
+    font-family: 'Rubik', sans-serif;
+}
+
+/* pets page */
+
+.animalimg {
+    display: block;
+    max-width: 15vw;
+    max-height: 10vw;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.petsinfo {
+    color:#031927;
+    font-size:18px;
+    font-family: 'Rubik', sans-serif;
+}
+
+/* favorites page */
+.favoritesimg {
+    
+    display: block;
+    max-width: 15vw;
+    max-height: 15vw;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.title {
+    padding: 5vh 0;
+}
+
+.sketchy {
+    padding: 0 5vw;
+    display: inline-block;
+    border: 3px solid #333333;
+    font-size: 2.5rem;
+    border-radius: 2% 6% 5% 4% / 1% 1% 2% 4%;
+    text-transform: uppercase;
+    letter-spacing: 0.3ch;
+    background: #ffffff;
+    position: relative;
+    margin-bottom: 5vh;
+    font-family: 'Rubik', Arial;
+}
+
+.carouselimg {
+    max-width: 100vw;
+    max-height: 50w;
+    border:10px solid #efc164;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+
+}
+/* slideshow */
+
+* {box-sizing:border-box}
+
+/* Slideshow container */
+.slideshow-container {
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+}
+
+/* Hide the images by default */
+.mySlides {
+  display: none;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -22px;
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: #efc164;
+  opacity: 0.8;
+}
+
+/* Caption text */
+.text {
+  color: #f2f2f2;
+  background-color: #031927;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: -100px;
+  width: 100%;
+  text-align: center;
+  font-family: 'Rubik', sans-serif;
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #efc164;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+  font-family: 'Rubik', sans-serif;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: lightblue;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+  background-color: #6DB8E5;
+}
+
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
