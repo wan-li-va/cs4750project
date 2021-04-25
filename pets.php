@@ -84,6 +84,7 @@
     $output="<h2>Welcome to Modern Business
             <div class='container'>
             <div class='row'>";
+            
 
     while($row = mysqli_fetch_array($exeQuery)) {
         // $name = $row['name'];
@@ -92,9 +93,9 @@
         echo  "<div class='card'>";
         echo  "<div class='card-body'>"; 
 
-        echo "<img src=\"";
+        echo "<img src='";
         echo $image = $row['image'];
-        echo "\" width=\"500\"> </img>";
+        echo "' width='500'> </img>";
 
         echo "<h1>";
         echo  $name =  $row['name'];
