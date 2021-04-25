@@ -157,6 +157,7 @@
     var val = parseInt(str);
     return (val > 0);
   }
+  
   // checking that the email is an email
   function isEmail(str)
   {
@@ -164,6 +165,7 @@
     var match_test = re.test(str);
     return match_test;
   }
+
 
   //making sure that all elements are filled out
   function checkRegistration()
@@ -223,6 +225,10 @@
     {
       errors++;
       document.getElementById("msg_phone").innerHTML = "Your phone is not an integer or it is blank";
+    }
+    else if (phone.length != 10) {
+      errors++;
+      document.getElementById("msg_phone").innerHTML = "Please enter a 10 digit phone number";
     }
     else 
     {

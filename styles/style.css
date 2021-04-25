@@ -61,7 +61,7 @@ a:hover {
 }
 
 .favoritebtn {
-    background: #2f4962 !important;
+    background: #2f4962
     color: white !important;
     font-family: 'Rubik', sans-serif;
 }
@@ -90,16 +90,6 @@ a:hover {
     color: #2f4962;
     
   }
-
-/* favorites page */
-.favoritesimg {
-    
-    display: block;
-    max-width: 15vw;
-    max-height: 15vw;
-    margin-left: auto;
-    margin-right: auto;
-}
 
 .title {
     padding: 5vh 0;
