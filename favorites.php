@@ -94,7 +94,6 @@
         echo  "<div class='card'>";
         echo  "<div class='card-body'>"; 
         
-        if ($_SESSION['user'] == $username) {
             if ($row['image'] != NULL) {
             echo "<img class='favoritesimg' img src='";
             echo $image = $row['image'];
@@ -139,7 +138,7 @@
             echo  "</div>";
         }
     
-    }    
+
     echo  "</div>";
     
     mysqli_close($con);
