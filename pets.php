@@ -1,6 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<?php 
+    require('connect-db.php');
+    include "./navbar.php"; 
+
+    if ($_SERVER['REQUEST_METHOD'] == 'POST')
+        {
+            if (!empty($_POST['action']) && ($_POST['action'] == 'Update'))
+            {
+                $_SESSION['pName'] = $_POST['pName'];
+                $_SESSION['pDOB'] = $_POST['pDOB'];            
+                header("Location: petUpdate.php");
+            }
+        }
+
+    $loggedIn = False;
+    $manager = False;
+    if (isset($_SESSION['user']))
+    {
+        $loggedIn = True;
+        $user = $_SESSION['user'];
+
+        $query = "SELECT * FROM users WHERE username = :username";
+        $statement = $db->prepare($query);
+        $statement->bindParam(':username', $user);
+        $statement->execute();
+                
+        // fetchAll() returns an array for all of the rows in the result set
+        $user_info = $statement->fetchAll();
+                
+        // closes the cursor and frees the connection to the server so other SQL statements may be issued
+        $statement->closecursor();
+        if($user_info[0]['role'] == 'admin' || $user_info[0]['role'] == 'manager')
+        {
+            $manager = True;
+        }       
+    
+    }    
+?>
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- required to handle IE -->
@@ -25,53 +64,6 @@
     <link href="./styles/style.css" rel="stylesheet" type="text/css" />
 </head>
 
-<?php 
-    if ($_SERVER['REQUEST_METHOD'] == 'POST')
-    {
-        if (!empty($_POST['action']) && ($_POST['action'] == 'Update'))
-        {
-            $_SESSION['pDOB'] = $_POST['pDOB'];
-            $_SESSION['pName'] = $_POST['pName'];
-            header("Location: petUpdate.php");
-        }
-    }
-
-    require_once('./connect-db.php');
-    include "./navbar.php"; 
-    $con = new mysqli($hostname, $username, $password, $dbname);
-    // Check connection
-    if (mysqli_connect_errno()) 
-    {
-        echo("Can't connect to MySQL Server. Error code: " .
-        mysqli_connect_error());
-        return null;
-    }
-    $loggedIn = False;
-    $manager = False;
-    if (isset($_SESSION['user']))
-    {
-        $loggedIn = True;
-        $user = $_SESSION['user'];
-
-        $query = "SELECT * FROM users WHERE username = :username";
-        $statement = $db->prepare($query);
-        $statement->bindParam(':username', $user);
-        $statement->execute();
-                
-        // fetchAll() returns an array for all of the rows in the result set
-        $user_info = $statement->fetchAll();
-                
-        // closes the cursor and frees the connection to the server so other SQL statements may be issued
-        $statement->closecursor();
-        if($user_info[0]['role'] == 'admin' || $user_info[0]['role'] == 'manager')
-        {
-            $manager = True;
-        }       
-    
-    }  
-     
-?>
-
 
 <body>
     <div class="body">
@@ -92,55 +84,22 @@
         ?>
         <br>
 
-<!-- 
-    <table cellspacing='4' cellpadding='4'>
-        <tr>
-            <th>Name</th>
-            <th>Date of Birth</th>
-            <th>Type of Animal</th>
-            <th>Color</th>
-            <th>Breed</th>
-            <th>Vaccinated</th>
-            <th>Spayed/Neutered</th>
-            <th>Shelter Name</th>
-            <th>Adoptable</th>
-            <th>Fosterable</th>
-            <th>Notes</th>
-            <th>Image</th>
-        </tr> -->
-
     <?php
     // Form the SQL query (a SELECT query)
-    $sql="SELECT * FROM pets ORDER BY name";
-    $result = mysqli_query($con,$sql);
     
-    // Print the data from the table row by row
-    // while($row = mysqli_fetch_array($result)) {
-    //     echo "<td>" . $row['name'] . "</td>";
-    //     echo "<td>" . $row['dob'] . "</td>";
-    //     echo "<td>" . $row['sex'] . "</td>";
-    //     echo "<td>" . $row['type_of_animal'] . "</td>";
-    //     echo "<td>" . $row['color'] . "</td>";
-    //     echo "<td>" . $row['breed'] . "</td>";
-    //     echo "<td>" . $row['is_vaccinated'] . "</td>";
-    //     echo "<td>" . $row['is_spayed_neutered'] . "</td>";
-    //     echo "<td>" . $row['shelter_name'] . "</td>";
-    //     echo "<td>" . $row['is_adoptable'] . "</td>";
-    //     echo "<td>" . $row['is_fosterable'] . "</td>";
-    //     echo "<td>" . $row['notes'] . "</td>";
-    //     echo "<td>" . $row['notes'] . "</td>";
-    //     echo "</tr>";
-    // }
     
-    $output="";
-    $exeQuery = mysqli_query($con,$sql);
+    $query="SELECT * FROM pets ORDER BY name";
+    $statement = $db->prepare($query);
+    $statement->execute();
+    $pets_info = $statement->fetchAll();
+    $statement->closecursor();
 
     $output="<h2>Welcome to Modern Business
             <div class='container'>
             <div class='row'>";
             
     echo "<div class='row'>";
-    while($row = mysqli_fetch_array($exeQuery)) {
+    foreach($pets_info as $row) {
         // $name = $row['name'];
         // $desciption = $row['desciption'];
         // $ephoto = $row['ephoto'];
