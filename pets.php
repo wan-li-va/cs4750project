@@ -65,6 +65,10 @@
     // Form the SQL query (a SELECT query)
     $sql="SELECT * FROM pets ORDER BY name";
     $result = mysqli_query($con,$sql);
+    $loggedIn = False;
+    if (isset($_SESSION['user'])){
+        $loggedIn = True;
+    }
     // Print the data from the table row by row
     // while($row = mysqli_fetch_array($result)) {
     //     echo "<td>" . $row['name'] . "</td>";
@@ -145,7 +149,7 @@
 
         // Vaccinations
         echo "<p class='petsinfo'> <b> Vaccinations: </b>";
-        if ($row['is_vaccinated' == "1"]) {
+        if ($row['is_vaccinated'] == 1) {
             echo "Up to Date";
         }
         else {
@@ -155,7 +159,7 @@
 
         //spayed/neutered
         echo "<p class='petsinfo'> <b>Spayed/Neutered: </b>";
-        if ($row['is_spayed_neutered' == "1"]) {
+        if ($row['is_spayed_neutered'] == 1) {
             echo "Yes";
         }
         else {
@@ -171,7 +175,7 @@
 
         //adoptable
         echo "<p class='petsinfo'> <b>Adoptable: </b>";
-        if ($row['is_adoptable' == "1"]) {
+        if ($row['is_adoptable'] == 1) {
             echo "Up for Adoption";
         }
         else {
@@ -182,7 +186,7 @@
 
         //fosterable
         echo "<p class='petsinfo'> <b>Fosterable: </b>";
-        if ($row['is_fosterable' == "1"]) {
+        if ($row['is_fosterable'] == 1) {
             echo "Up for Foster";
         }
         else {
