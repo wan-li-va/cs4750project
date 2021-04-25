@@ -57,7 +57,7 @@
             if (!empty($_POST['action']) && ($_POST['action'] == 'Cancel'))
             {
                 unset($_SESSION['id']);
-                header("Location: home.php");
+                header("Location: donors.php");
             }
             else
             {
