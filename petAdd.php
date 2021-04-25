@@ -124,7 +124,7 @@
         <div class="form-group">
             <div class="form-row">
                 <div class = "col">
-                    <label for="first_name">First Name</label>
+                    <label for="first_name">Name</label>
                     <input type="text" class="form-control" id="name" name="name" placeholder="Enter the name" required>
                 </div>
             </div>
