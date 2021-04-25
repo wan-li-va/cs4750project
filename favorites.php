@@ -20,13 +20,15 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
     <!-- ICON  -->
-    <link rel="shortcut icon" href="https://media2.giphy.com/media/n9wqJ8gTR9lQnXTvf3/giphy_s.gif" type="image/ico" />
+    <link rel="shortcut icon" href="https://pngimg.com/uploads/paw/paw_PNG21.png" type="image/ico" />
     <!-- EXTERNAL CSS -->
     <link href="./styles/style.css" rel="stylesheet" type="text/css" />
 </head>
 
-<?php include "./navbar.php" ?>
+<?php include "./navbar.php"; 
 
+    if (isset($_SESSION['user'])){
+      ?>
 <body>
     <div class="body">
 

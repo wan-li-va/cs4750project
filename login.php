@@ -7,6 +7,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="icon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="icon/favicon-16x16.png">
     <link rel="manifest" href="icon/site.webmanifest">
+    <link rel="shortcut icon" href="https://pngimg.com/uploads/paw/paw_PNG21.png" type="image/ico" />
         <!-- FONT -->
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
@@ -20,13 +21,9 @@
         <meta name="author" content="Valerie Young">  
         <title>Purrfect Pets</title>  
         <style type="text/css">
-            h1	{font-family: 'Rubik', Arial;
-                }
-            h2   {font-family: 'Rubik', 'Arial';
-                  font-size: 25px;
-                }
-            p   {font-family: 'Rubik', 'Arial';
-                }
+            h1	{font-family: 'Rubik', Arial;}
+            h2   {font-family: 'Rubik', 'Arial'; font-size: 25px;}
+            p   {font-family: 'Rubik', 'Arial';}
         </style>
        
     </head>
@@ -52,16 +49,14 @@ if(isset($_POST['submit'])){
             header("Location: home.php");
           } 
           else{
-            echo "That's the wrong password. Go back and try again.";
+            echo "<div class=\"text-center\">That's the wrong password. Please try again.</div>";
           }
         }
     }
-      else{
-        echo "This account doesn't exist.";
-        header("Location: account_create.php");
-        }
+    else{
+      echo "<div class=\"text-center\">That account doesn't exist.</div>";
+    }
 }
-    
     ?>
 
       <div class="container">
@@ -83,6 +78,11 @@ if(isset($_POST['submit'])){
                         </div>
 
                         </form>
+                    </div>
+                    
+                    <div class="text-center">
+                      <h5>OR</h5>
+                          <a href="account_create.php" class="btn btn-primary py-3 px-5">Create an Account </a>
                     </div>
                 </div>
               </div>

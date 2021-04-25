@@ -3,9 +3,10 @@
 .body {
     display: flex;
     flex-direction: column;
-    margin: 10vw 10vw 10vw 10vw;
+    margin: 4vw 4vw 4vw 4vw;
     justify-content: center;
     align-items: center;
+    font-family: 'Rubik', Arial;
 }
 
 .mainimg {
@@ -67,6 +68,9 @@ a:hover {
     max-height: 15vw;
     margin-left: auto;
     margin-right: auto;
+
+.title {
+    padding: 5vh 0;
 }
 
 .sketchy {

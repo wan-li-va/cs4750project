@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <?php 
     require('connect-db.php');
 ?>
@@ -23,9 +24,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
     <!-- ICON  -->
-    <link rel="shortcut icon" href="https://media2.giphy.com/media/n9wqJ8gTR9lQnXTvf3/giphy_s.gif" type="image/ico" />
+    <link rel="shortcut icon" href="https://pngimg.com/uploads/paw/paw_PNG21.png" type="image/ico" />
     <!-- EXTERNAL CSS -->
     <link href="./styles/style.css" rel="stylesheet" type="text/css" />
+    <link href="./styles/about.css" rel="stylesheet" type="text/css" />
 </head>
 
 <?php include "./navbar.php";
@@ -46,9 +48,9 @@
                 
             // closes the cursor and frees the connection to the server so other SQL statements may be issued
             $statement->closecursor();
-            if($user_info[0]['role'] == 'admin')
+            if($user_info[0]['role'] == 'admin' || $user_info[0]['role'] == 'manager')
             {
-                $query = "SELECT * FROM users WHERE role != 'admin' ORDER BY username";
+                $query = "SELECT * FROM employees ORDER BY username";
                 $statement = $db->prepare($query);
                 $statement->execute();
                     
@@ -61,7 +63,7 @@
             else
             {
                 echo "<script>
-                alert('You are not an admin');
+                alert('You are not an admin or a manager');
                 window.location.href='home.php';
                 </script>";
             }
@@ -71,20 +73,13 @@
             if (!empty($_POST['action']) && ($_POST['action'] == 'Update'))
             {
                 $_SESSION['id'] = $_POST['username'];
-                header("Location: managerChange.php");
-
-            }
-            elseif (!empty($_POST['action']) && ($_POST['action'] == 'Change'))
-            {
-                $_SESSION['id'] = $_POST['username'];
-                header("Location: employeeAdd.php");
+                header("Location: employeeEdit.php");
 
             }
             elseif (!empty($_POST['action']) && ($_POST['action'] == 'Delete'))
             {
                 $_SESSION['id'] = $_POST['username'];
-                header("Location: userDelete.php");
-
+                header("Location: employeeDelete.php");
             }
         }
     ?>
@@ -99,20 +94,14 @@
                 <col class="table3">
                 <col class="table4">
                 <col class="table5">
-                <col class="table6">
-                <col class="table7">
               </colgroup>
             <!-- Header for the columns -->
             <tr class="thead">
                 <th>Username</th>
-                <th>Role</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Email Address</th>
-                <th>Phone Number</th>
-                <th>Change to Manager</th>
-                <th>Add to employees</th>
-                <th>Delete User</th>
+                <th>Shelter Name</th>
+                <th>Start Date</th>
+                <th>Edit Info</th>
+                <th>Delete Employee</th>
             </tr>
             <?php foreach ($user_info as $g): ?>
             <tr>
@@ -120,29 +109,14 @@
                     <?php echo $g['username']; // refer to column name in the table ?> 
                 </td>
                 <td>
-                    <?php echo $g['role']; ?> 
+                    <?php echo $g['shelter_name']; ?> 
                 </td>        
                 <td>
-                    <?php echo $g['first_name']; ?> 
-                </td>
-                <td>
-                    <?php echo $g['last_name']; ?> 
-                </td>
-                <td>
-                    <?php echo $g['email_address']; ?> 
-                </td> 
-                <td>
-                    <?php echo $g['phone_num']; ?> 
-                </td>                 
+                    <?php echo $g['start_date']; ?> 
+                </td>               
                 <td>
                     <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
                         <input type="submit" value="Update" name="action" class="btn btn-primary" />             
-                        <input type="hidden" name="username" value="<?php echo $g['username'] ?>" />
-                    </form> 
-                </td>  
-                <td>
-                    <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
-                        <input type="submit" value="Change" name="action" class="btn btn-primary" />             
                         <input type="hidden" name="username" value="<?php echo $g['username'] ?>" />
                     </form> 
                 </td>  
@@ -173,3 +147,6 @@
         <a class="btn btn-primary" href="home.php">Return Home</a>
     </body>
 <?php }?>
+
+
+
