@@ -219,7 +219,7 @@
         echo '<input type="hidden" name="pImg" value="' . $row['image'] .'" />';
         
         
-        //idk if these closing tags for this section line up
+        //idk if these closing tags for this section
         echo "</div>";
         echo "</form>";
 
@@ -258,4 +258,32 @@
     
 </div>
 </div>
+<button class="scrollToTopBtn">TOP</button>
 </body>
+
+<script>
+var scrollToTopBtn = document.querySelector(".scrollToTopBtn")
+var rootElement = document.documentElement
+
+function handleScroll() {
+  // Do something on scroll
+  var scrollTotal = rootElement.scrollHeight - rootElement.clientHeight
+  if ((rootElement.scrollTop / scrollTotal ) > 0.20) {
+    // Show button
+    scrollToTopBtn.classList.add("showBtn")
+  } else {
+    // Hide button
+    scrollToTopBtn.classList.remove("showBtn")
+  }
+}
+
+function scrollToTop() {
+  // Scroll to top logic
+  rootElement.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  })
+}
+scrollToTopBtn.addEventListener("click", scrollToTop)
+document.addEventListener("scroll", handleScroll)
+</script>
