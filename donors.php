@@ -1,8 +1,35 @@
+<? ob_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <?php 
     require('connect-db.php');
-?>
+    include "./navbar.php";
+        if ($_SERVER['REQUEST_METHOD'] == 'GET')
+        {
+            $query = "SELECT * FROM donors ORDER BY shelter_name";
+                $statement = $db->prepare($query);
+                $statement->execute();
+                    
+                // fetchAll() returns an array for all of the rows in the result set
+                $user_info = $statement->fetchAll();
+                    
+                // closes the cursor and frees the connection to the server so other SQL statements may be issued
+                $statement->closecursor();
+        }
+        else if ($_SERVER['REQUEST_METHOD'] == 'POST')
+        {
+            if (!empty($_POST['action']) && ($_POST['action'] == 'Update'))
+            {
+                $_SESSION['id'] = $_POST['last_name'];
+                header("Location: donorEdit.php");
+            }
+            elseif (!empty($_POST['action']) && ($_POST['action'] == 'Delete'))
+            {
+                $_SESSION['id'] = $_POST['last_name'];
+                header("Location: donorDelete.php");
+            }
+        }
+    ?>
 
 <head>
     <meta charset="utf-8">
@@ -32,32 +59,6 @@
     <link href="./styles/style.css" rel="stylesheet" type="text/css" />
 </head>
 
-<?php include "./navbar.php";
-    // checks that the user is logged in
-        if ($_SERVER['REQUEST_METHOD'] == 'GET')
-        {
-
-            $query = "SELECT * FROM donors ORDER BY shelter_name";
-                $statement = $db->prepare($query);
-                $statement->execute();
-                    
-                // fetchAll() returns an array for all of the rows in the result set
-                $user_info = $statement->fetchAll();
-                    
-                // closes the cursor and frees the connection to the server so other SQL statements may be issued
-                $statement->closecursor();
-
-        }
-        else if ($_SERVER['REQUEST_METHOD'] == 'POST')
-        {
-            if (!empty($_POST['action']) && ($_POST['action'] == 'Update'))
-            {
-                $_SESSION['id'] = $_POST['username'];
-                header("Location: donorEdit.php");
-
-            }
-        }
-    ?>
     <body>
     <div class="sketchy">
         <center><h1 class="title">List of Donors</h1>
@@ -119,11 +120,11 @@
                 <th>Shelter Name</th>
                 <th>Donation Amount</th>
                 <?php if (isset($_SESSION['user'])){
-                    if($logged_in_info[0]['role'] == 'admin'){?>
+                    if($logged_in_info[0]['role'] == 'admin')?>
                 <th>Admin Controls</th>
-                <?php }} ?>  
+                <?php }?>  
             </tr>
-            <?php foreach ($user_info as $g): ?>
+            <?php foreach ($user_info as $g):?>
             <tr>
                 <td>
                     <?php echo $g['first_name']; // refer to column name in the table ?> 
@@ -143,21 +144,22 @@
                 <?php if (isset($_SESSION['user'])){
                     if($logged_in_info[0]['role'] == 'admin'){?>
                 <td>
-                <!-- Update data object button on each row -->
+                <!-- Update on each row -->
                     <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
                         <input type="submit" value="Update" name="action" class="btn btn-primary" />   
-                        <!-- <input type="hidden" name="username" /> -->
+                        <input type="hidden" name="last_name" value="<?php echo $g['last_name'] ?>" />
                     </form>   
-                <!-- Update data object button on each row -->
+                <!-- Delete button on each row -->
                     <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
                         <input type="submit" value="Delete" name="action" class="btn btn-primary" />             
-                        <!-- <input type="hidden" name="username" /> -->
+                        <input type="hidden" name="last_name" value="<?php echo $g['last_name'] ?>" />
                     </form>    
                 </td>
                 <?php }} ?>                                                  
             </tr>
-            <?php endforeach; ?>
+            <?php endforeach;?>
 
         </table>
 
     </body>
+    <? ob_flush(); ?>
