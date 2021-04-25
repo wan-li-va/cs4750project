@@ -58,3 +58,13 @@ a:hover {
     font-size:18px;
     font-family: 'Rubik', sans-serif;
 }
+
+/* favorites page */
+.favoritesimg {
+    
+    display: block;
+    max-width: 15vw;
+    max-height: 15vw;
+    margin-left: auto;
+    margin-right: auto;
+}
