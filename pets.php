@@ -14,11 +14,24 @@
                 header("Location: petUpdate.php");
             }
             if (!empty($_POST['action']) && ($_POST['action'] == 'Favorite'))
-            {
-                $_SESSION['pName2'] = $_POST['pName2'];
-                $_SESSION['pDOB2'] = $_POST['pDOB2'];
-                $_SESSION['pImg2'] = $_POST['pImg2'];                
-                header("Location: favoritesAdd.php");
+            {  
+                $username = $_SESSION['user'];
+                $name = $_POST['pName2'];
+                $dob = $_POST['pDOB2'];
+                $image = $_POST['pImg2'];
+                $query = "INSERT INTO favorites (username, name, dob, image) 
+                    VALUES (:username, :name, :dob, :image)";
+                $statement = $db->prepare($query);
+                $statement->bindValue(':username', $username);
+                $statement->bindValue(':name', $name);
+                $statement->bindValue(':dob', $dob);                
+                $statement->bindValue(':image', $image);
+                $statement->execute();
+                $statement->closeCursor();
+                echo "<script>
+                alert('Pet added to favorites');
+                window.location.href='pets.php';
+                </script>";
             }
         }
 
