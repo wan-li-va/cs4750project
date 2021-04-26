@@ -204,14 +204,17 @@
         echo "</p>";
 
         //pet edit
-        echo "<p class='petsinfo'>";
-        echo '<form action="' . htmlspecialchars($_SERVER["PHP_SELF"]) . '"method="post">';
-        echo "<div style='text-align:center'>";
-        echo '<input type="submit" value="Update" name="action" class="btn btn-primary" />';
-        echo '<input type="hidden" name="pName" value="' . $row['name'] .'" />';
-        echo '<input type="hidden" name="pDOB" value="' . $row['dob'] .'" />';
-        echo "</div>";
-        echo "</form>";
+        if($manager)
+        {
+            echo "<p class='petsinfo'>";
+            echo '<form action="' . htmlspecialchars($_SERVER["PHP_SELF"]) . '"method="post">';
+            echo "<div style='text-align:center'>";
+            echo '<input type="submit" value="Update" name="action" class="btn btn-primary" />';
+            echo '<input type="hidden" name="pName" value="' . $row['name'] .'" />';
+            echo '<input type="hidden" name="pDOB" value="' . $row['dob'] .'" />';
+            echo "</div>";
+            echo "</form>";
+        }
 
         echo  "</div>";
         echo  "</div>";
