@@ -65,7 +65,7 @@
 
             echo "<script>
                 alert('Settings Changed');
-                window.location.href='home.php';
+                window.location.href='settings.php';
                 </script>";
         }
       
