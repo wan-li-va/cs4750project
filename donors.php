@@ -75,10 +75,10 @@
         $statement->execute();
         $logged_in_info = $statement->fetchAll();
         $statement->closecursor();
-        if($logged_in_info[0]['role'] == 'admin' || $logged_in_info[0]['role'] == 'manager')?>
+        if($logged_in_info[0]['role'] == 'admin' || $logged_in_info[0]['role'] == 'manager'){?>
             <center><a href="donorAdd.php" id="addDonor">Click to add a donor to this table.</a></center>
         <?php
-        }
+        }}
     ?>
 
     </div>
@@ -100,9 +100,9 @@
                 <th>Shelter Name</th>
                 <th>Donation Amount</th>
                 <?php if (isset($_SESSION['user'])){
-                    if($logged_in_info[0]['role'] == 'admin' || $logged_in_info[0]['role'] == 'manager')?>
+                    if($logged_in_info[0]['role'] == 'admin' || $logged_in_info[0]['role'] == 'manager'){?>
                 <th>Admin Controls</th>
-                <?php }?>  
+                <?php }}?>  
             </tr>
             <?php foreach ($user_info as $g):?>
             <tr>
@@ -122,7 +122,7 @@
                     <?php echo '$' . $g['donation_amount']; ?> 
                 </td>
                 <?php if (isset($_SESSION['user'])){
-                    if($logged_in_info[0]['role'] == 'admin'){?>
+                    if($logged_in_info[0]['role'] == 'admin' || $logged_in_info[0]['role'] == 'manager'){?>
                 <td>
                 <!-- Update on each row -->
                     <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post">

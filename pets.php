@@ -88,7 +88,7 @@
 <body>
     <div class="body">
         <div class="sketchy">
-            <h1 class="title"> Pets</h1>
+            <h1 class="title">Pets Available </h1>
         </div>
         <?php
         if($loggedIn)
@@ -224,26 +224,30 @@
         echo "</p>";
 
         //pet edit
-        echo "<p class='petsinfo'>";
-        echo '<form action="' . htmlspecialchars($_SERVER["PHP_SELF"]) . '"method="post">';
-        echo "<div style='text-align:center'>";
-        echo '<input type="submit" value="Update" name="action" class="btn btn-primary" style="margin-right:1em;"/>';
-        echo '<input type="hidden" name="pName" value="' . $row['name'] .'" />';
-        echo '<input type="hidden" name="pDOB" value="' . $row['dob'] .'" />';
-        echo "</div>";
-        echo "</form>";
-        
+        if($manager)
+        {
+            echo "<p class='petsinfo'>";
+            echo '<form action="' . htmlspecialchars($_SERVER["PHP_SELF"]) . '"method="post">';
+            echo "<div style='text-align:center'>";
+            echo '<input type="submit" value="Update" name="action" class="btn btn-primary" />';
+            echo '<input type="hidden" name="pName" value="' . $row['name'] .'" />';
+            echo '<input type="hidden" name="pDOB" value="' . $row['dob'] .'" />';
+            echo "</div>";
+            echo "</form>";
+        }
+        if ($loggedIn) {
         echo '<form action="' . htmlspecialchars($_SERVER["PHP_SELF"]) . '"method="POST">';
         echo '<input class="btn btn-primary" type="submit" value="Favorite" name="action" />';
         echo '<input type="hidden" name="pName2" value="' . $row['name'] .'" />';
         echo '<input type="hidden" name="pDOB2" value="' . $row['dob'] .'" />';
         echo '<input type="hidden" name="pImg2" value="' . $row['image'] .'" />';
         echo "</form>";
-        
+        }
 
         echo  "</div>";
         echo  "</div>";
         echo  "</div>";
+
     
     }    
     echo  "</div>";

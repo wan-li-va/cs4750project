@@ -83,7 +83,7 @@
 </head>
 
     <body>
-    <center><a href="employeeAdd.php" id="addEmployee">Click to add an employee to this table.</a></center>
+    <!-- <center><a href="employeeAdd.php" id="addEmployee">Click to add an employee to this table.</a></center> -->
     <div class="table-responsive">
         <!-- Make it striped -->
         <table class="table table-striped table-bordered" style="width:100%" id = "users">

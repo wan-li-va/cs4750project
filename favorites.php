@@ -96,7 +96,7 @@ include "./navbar.php"; ?>
             // $name = $row['name'];
             // $desciption = $row['desciption'];
             // $ephoto = $row['ephoto'];
-            echo "<div class='col-sm-6'>";
+            echo "<div class='col-sm-3'>";
             echo  "<div class='card'>";
             echo  "<div class='card-body'>"; 
             if ($row['image'] != NULL) {
@@ -115,6 +115,9 @@ include "./navbar.php"; ?>
             echo "<p class='petsinfo'> <b> Birthdate (YYYY-MM-DD): </b>";
             echo $dob = $row['dob'];
             echo "</p>";
+
+
+            
             echo  "</div>";
             echo  "</div>";
             echo  "</div>";

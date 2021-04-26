@@ -41,26 +41,21 @@
         $pName = $_SESSION['pName'];
         $pDOB = $_SESSION['pDOB'];
 
-        $query = "SELECT * FROM employees WHERE name = :name AND dob = :dob";
+        $query = "SELECT * FROM pets WHERE name = :name AND dob = :dob";
         $statement = $db->prepare($query);
         $statement->bindParam(':name', $pName);
         $statement->bindParam(':dob', $pDOB);
         $statement->execute();
             
         // fetchAll() returns an array for all of the rows in the result set
-        $user_info = $statement->fetchAll();
+        $pet_info = $statement->fetchAll();
         // closes the cursor and frees the connection to the server so other SQL statements may be issued
         $statement->closecursor();
-        // $pieces = explode("-", $user_info[0]['start_date']);
+        $pieces = explode("-", $pet_info[0]['dob']);
 
         //checks for post
         if ($_SERVER["REQUEST_METHOD"] == "POST")
         {
-                $name = $_POST['name'];
-                $month = $_POST['month'];
-                $day = $_POST['day'];
-                $year = $_POST['year'];                
-                $DOB = $year . "-" . $month . "-" . $day;
                 $sex = $_POST['gender'];
                 if($sex == 'male')
                 {
@@ -104,16 +99,15 @@
                 $notes = $_POST['notes'];
                 $image = $_POST['image'];
 
-                $query = "INSERT INTO pets (name, dob, sex, type_of_animal, color, 
-                breed, is_vaccinated, is_spayed_neutered, shelter_name, is_adoptable, 
-                is_fosterable, notes, image) VALUES 
-                (:name, :dob, :sex, :type_of_animal, :color, 
-                :breed, :is_vaccinated, :is_spayed_neutered, :shelter_name, :is_adoptable, 
-                :is_fosterable, :notes, :image)";
+                $query = "UPDATE pets SET sex=:sex, type_of_animal=:type_of_animal,
+                color=:color, breed=:breed, is_vaccinated=:is_vaccinated, 
+                is_spayed_neutered=:is_spayed_neutered, shelter_name=:shelter_name, is_adoptable=:is_adoptable, 
+                is_fosterable=:is_fosterable, notes=:notes, image=:image
+                WHERE name=:name AND dob=:dob";
                 $statement = $db->prepare($query);
 
-                $statement->bindValue(':name', $name);
-                $statement->bindValue(':dob', $DOB);
+                $statement->bindValue(':name', $pName);
+                $statement->bindValue(':dob', $pDOB);
                 $statement->bindValue(':sex', $gender);
                 $statement->bindValue(':type_of_animal', $type);
                 $statement->bindValue(':color', $color);
@@ -129,10 +123,11 @@
                 $statement->execute();
                 $statement->closeCursor();
                 echo "<script>
-                alert('Pet added to table');
+                alert('Pet updated');
                 window.location.href='pets.php';
                 </script>";
             
+        
 
         }
 ?>
@@ -142,42 +137,18 @@
       <!-- a form -->
       <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" name="editForm" method="post">
 
-        <h4>Add a pet</h4>
+        <h4>
+        Editing Pet <?php if(isset($pet_info[0]["name"])){echo $pet_info[0]["name"];}?>
+        </h4>
           
         <div class="form-group">
-            <div class="form-row">
-                <div class = "col">
-                    <label for="first_name">First Name</label>
-                    <input type="text" class="form-control" id="name" name="name" placeholder="Enter the name" required>
-                </div>
-            </div>
-            <div class="form-group">
-                <h5>Date of Birth</h5>
-                <div class="form-row">
-                    <div class = "col">
-                        <label for="month">Month</label>
-                        <input type="number" class="form-control" id="month" name="month" placeholder="Enter month" required
-                            maxlength="2" min="1" max="12">
-                    </div>
-                    <div class = "col">
-                        <label for="day">Day</label>
-                        <input type="number" class="form-control" id="day" name="day" placeholder="Enter day" required
-                            maxlength="2" min="1" max="31">
-                    </div> 
-                    <div class = "col">
-                        <label for="year">Year</label>
-                        <input type="number" class="form-control" id="year" name="year" placeholder="Enter year" required
-                            maxlength="4" min="1750" max="2021">
-                    </div> 
-                </div>  
-            </div>
             <br>
             <div class="form-row">
                 <div class = "col">
                     <label for="gender">Gender</label>
-                    <select name="gender" id="gender">
+                    <select name="gender" id="gender" >
                         <option value="male">Male</option>
-                        <option value="female">Female</option>
+                        <option value="female" <?php if($pet_info[0]["sex"] == "F"){echo "selected";}?>>Female</option>
                     </select>
                 </div>
             </div>
@@ -185,15 +156,18 @@
             <div class="form-row">
                 <div class = "col">
                     <label for="type">Type of animal</label>
-                    <input type="text" class="form-control" id="type" name="type" placeholder="Enter the type" required>
+                    <input type="text" class="form-control" id="type" name="type" placeholder="Enter the type" required
+                        value="<?php echo $pet_info[0]['type_of_animal'];?>">
                 </div>
                 <div class = "col">
                     <label for="color">Color</label>
-                    <input type="text" class="form-control" id="color" name="color" placeholder="Enter the color" required>
+                    <input type="text" class="form-control" id="color" name="color" placeholder="Enter the color" required
+                        value="<?php echo $pet_info[0]['color'];?>">
                 </div>
                 <div class = "col">
                     <label for="breed">Breed</label>
-                    <input type="text" class="form-control" id="breed" name="breed" placeholder="Enter the Breed" required>
+                    <input type="text" class="form-control" id="breed" name="breed" placeholder="Enter the Breed" required
+                        value="<?php echo $pet_info[0]['breed'];?>">
                 </div>
             </div>
             </br>
@@ -201,22 +175,26 @@
                 <div class = "col">
                     <label for="is_vaccinated">Is Vaccinated</label>
                     <input type="hidden" name="is_vaccinated" value="no">
-                    <input type="checkbox" class="form-control" id="is_vaccinated" name="is_vaccinated" value="yes">
+                    <input type="checkbox" class="form-control" id="is_vaccinated" name="is_vaccinated" value="yes"
+                        <?php if($pet_info[0]['is_vaccinated']){echo "checked";}?>>
                 </div>
                 <div class = "col">
                     <label for="is_spayed_neutered">Is Spayed/Neutered</label>
                     <input type="hidden" name="is_spayed_neutered" value="no">
-                    <input type="checkbox" class="form-control" id="is_spayed_neutered" name="is_spayed_neutered" value="yes">
+                    <input type="checkbox" class="form-control" id="is_spayed_neutered" name="is_spayed_neutered" value="yes"
+                    <?php if($pet_info[0]['is_spayed_neutered']){echo "checked";}?>>
                 </div>
                 <div class = "col">
                     <label for="is_adoptable">Is Adoptable</label>
                     <input type="hidden" name="is_adoptable" value="no">
-                    <input type="checkbox" class="form-control" id="is_adoptable" name="is_adoptable" value="yes">
+                    <input type="checkbox" class="form-control" id="is_adoptable" name="is_adoptable" value="yes"
+                    <?php if($pet_info[0]['is_adoptable']){echo "checked";}?>>
                 </div>
                 <div class = "col">
                     <label for="is_fosterable">Is Fosterable</label>
                     <input type="hidden" name="is_fosterable" value="no">
-                    <input type="checkbox" class="form-control" id="is_fosterable" name="is_fosterable" value="yes">
+                    <input type="checkbox" class="form-control" id="is_fosterable" name="is_fosterable" value="yes"
+                    <?php if($pet_info[0]['is_fosterable']){echo "checked";}?>>
                 </div>
             </div>
             
@@ -225,21 +203,24 @@
             <div class="form-row">
                 <div class = "col">
                     <label for="shelter_name">Shelter Name</label>
-                    <input type="text" class="form-control" id="shelter_name" name="shelter_name" placeholder="Enter the shelter name" required>
+                    <input type="text" class="form-control" id="shelter_name" name="shelter_name" placeholder="Enter the shelter name" required
+                    value="<?php echo $pet_info[0]['shelter_name'];?>">
                 </div>
             </div>
 
             <div class="form-row">
                 <div class = "col">
                     <label for="notes">Notes</label>
-                    <input type="text" class="form-control" id="notes" name="notes" placeholder="Enter any notes">
+                    <input type="text" class="form-control" id="notes" name="notes" placeholder="Enter any notes"
+                        value = "<?php if(isset($pet_info[0]["notes"])){echo $pet_info[0]["notes"];}?>">
                 </div>
             </div>
 
             <div class="form-row">
                 <div class = "col">
-                    <label for="image">Image</label>
-                    <input type="text" class="form-control" id="image" name="image" placeholder="Enter url to image">
+                    <label for="image">Image Link</label>
+                    <input type="text" class="form-control" id="image" name="image" placeholder="Enter url to image"
+                        value = "<?php if(isset($pet_info[0]["image"])){echo $pet_info[0]["image"];}?>">
                 </div>
             </div>
             
