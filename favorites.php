@@ -25,30 +25,38 @@
 </head>
 <?php 
 require('connect-db.php');
-include "./navbar.php"; ?>
+include "./navbar.php"; 
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+    if (!empty($_POST['action']) && ($_POST['action'] == 'Delete'))
+    {  
+        $username = $_SESSION['user'];
+        $name = $_POST['pName2'];
+        $dob = $_POST['pDOB2'];
+        $image = $_POST['pImg2'];
+        $query = "DELETE FROM favorites WHERE username=:username, name=:name, dob=:dob";
+        $statement = $db->prepare($query);
+        $statement->bindValue(':username', $username);
+        $statement->bindValue(':name', $name);
+        $statement->bindValue(':dob', $dob);          
+        $statement->execute();
+        $statement->closeCursor();
+        echo "<script>
+        alert('Pet has been deleted from favorites');
+        window.location.href='favorites.php';
+        </script>";
+    }
+}
+?>
 <body>
     <div class="body">
     <div class="sketchy">
             <h1 class="title"> Favorite Pets</h1>
         </div>
-<!-- 
-    <table cellspacing='4' cellpadding='4'>
-        <tr>
-            <th>Name</th>
-            <th>Date of Birth</th>
-            <th>Type of Animal</th>
-            <th>Color</th>
-            <th>Breed</th>
-            <th>Vaccinated</th>
-            <th>Spayed/Neutered</th>
-            <th>Shelter Name</th>
-            <th>Adoptable</th>
-            <th>Fosterable</th>
-            <th>Notes</th>
-            <th>Image</th>
-        </tr> -->
+
     <?php
     // Form the SQL query (a SELECT query)
+    
     if (!isset($_SESSION['user']))
     {
         echo "<script>
@@ -63,23 +71,6 @@ include "./navbar.php"; ?>
     $statement->execute();
     $favorite_info = $statement->fetchAll();
     $statement->closecursor();
-    // Print the data from the table row by row
-    // while($row = mysqli_fetch_array($result)) {
-    //     echo "<td>" . $row['name'] . "</td>";
-    //     echo "<td>" . $row['dob'] . "</td>";
-    //     echo "<td>" . $row['sex'] . "</td>";
-    //     echo "<td>" . $row['type_of_animal'] . "</td>";
-    //     echo "<td>" . $row['color'] . "</td>";
-    //     echo "<td>" . $row['breed'] . "</td>";
-    //     echo "<td>" . $row['is_vaccinated'] . "</td>";
-    //     echo "<td>" . $row['is_spayed_neutered'] . "</td>";
-    //     echo "<td>" . $row['shelter_name'] . "</td>";
-    //     echo "<td>" . $row['is_adoptable'] . "</td>";
-    //     echo "<td>" . $row['is_fosterable'] . "</td>";
-    //     echo "<td>" . $row['notes'] . "</td>";
-    //     echo "<td>" . $row['notes'] . "</td>";
-    //     echo "</tr>";
-    // }
     
     $output="<h2>Welcome to Modern Business
             <div class='container'>
@@ -116,11 +107,19 @@ include "./navbar.php"; ?>
             echo $dob = $row['dob'];
             echo "</p>";
 
-
             
+            echo '<form action="' . htmlspecialchars($_SERVER["PHP_SELF"]) . '"method="POST">';
+            echo '<input class="btn btn-primary" type="submit" value="Delete" name="action" />';
+            echo '<input type="hidden" name="pName2" value="' . $row['name'] .'" />';
+            echo '<input type="hidden" name="pDOB2" value="' . $row['dob'] .'" />';
+            echo '<input type="hidden" name="pImg2" value="' . $row['image'] .'" />';
+            echo "</form>";
+
+
             echo  "</div>";
             echo  "</div>";
             echo  "</div>";
         }
     }
+    
     
