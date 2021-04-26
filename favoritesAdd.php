@@ -28,10 +28,12 @@
 <?php include "./navbar.php"; ?>
 
 <?php
+echo $_SERVER["REQUEST_METHOD"];
     //checks that the user is logged in
     if (isset($_SESSION['user'])){
         //checks for post
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                echo "working";
                 $pName = $POST['pName2'];
                 $pDOB = $_SESSION['pDOB2'];
                 $pImg = $_SESSION['pImg2'];
@@ -53,6 +55,9 @@
                 alert('Pet added to favorites');
                 window.location.href='pets.php';
                 </script>";
+        }
+        else {
+            echo "not working";
         }
     }
 ?>

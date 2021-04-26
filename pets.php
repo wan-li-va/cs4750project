@@ -214,21 +214,19 @@
         echo "<p class='petsinfo'>";
         echo '<form action="' . htmlspecialchars($_SERVER["PHP_SELF"]) . '"method="post">';
         echo "<div style='text-align:center'>";
-        echo '<input type="submit" value="Update" name="action" class="btn btn-primary" style="margin-right:2em;"/>';
+        echo '<input type="submit" value="Update" name="action" class="btn btn-primary" style="margin-right:1em;"/>';
         echo '<input type="hidden" name="pName" value="' . $row['name'] .'" />';
         echo '<input type="hidden" name="pDOB" value="' . $row['dob'] .'" />';
         echo "</div>";
         echo "</form>";
-
         
-        echo '<form action="' . htmlspecialchars($_SERVER["PHP_SELF"]) . '"method="post">';
+        echo '<form action="' . htmlspecialchars($_SERVER["PHP_SELF"]) . '"method="POST">';
         echo '<input class="btn btn-primary" type="submit" value="Favorite" name="action" />';
         echo '<input type="hidden" name="pName2" value="' . $row['name'] .'" />';
         echo '<input type="hidden" name="pDOB2" value="' . $row['dob'] .'" />';
         echo '<input type="hidden" name="pImg2" value="' . $row['image'] .'" />';
         echo "</form>";
         
-        //idk if these closing tags for this section
 
         echo  "</div>";
         echo  "</div>";
