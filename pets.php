@@ -13,11 +13,11 @@
                 $_SESSION['pDOB'] = $_POST['pDOB'];            
                 header("Location: petUpdate.php");
             }
-            if (!empty($_POST['action']) && ($_POST['action'] == '★'))
+            if (!empty($_POST['action']) && ($_POST['action'] == 'Favorite'))
             {
-                $_SESSION['pName'] = $_POST['pName'];
-                $_SESSION['pDOB'] = $_POST['pDOB'];
-                $_SESSION['pImg'] = $_POST['pImg'];                
+                $_SESSION['pName2'] = $_POST['pName2'];
+                $_SESSION['pDOB2'] = $_POST['pDOB2'];
+                $_SESSION['pImg2'] = $_POST['pImg2'];                
                 header("Location: favoritesAdd.php");
             }
         }
@@ -222,7 +222,7 @@
 
         
         echo '<form action="' . htmlspecialchars($_SERVER["PHP_SELF"]) . '"method="post">';
-        echo '<input class="favoritebtn" type="submit" value="★" name="action" />';
+        echo '<input class="btn btn-primary" type="submit" value="Favorite" name="action" />';
         echo '<input type="hidden" name="pName2" value="' . $row['name'] .'" />';
         echo '<input type="hidden" name="pDOB2" value="' . $row['dob'] .'" />';
         echo '<input type="hidden" name="pImg2" value="' . $row['image'] .'" />';
