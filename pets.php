@@ -11,6 +11,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $_SESSION['pDOB'] = $_POST['pDOB'];
         header("Location: petUpdate.php");
     }
+    elseif (!empty($_POST['action']) && ($_POST['action'] == 'Apply to Adopt')) {
+        $username = $_SESSION['user'];
+        $name = $_POST['pName'];
+        $dob = $_POST['pDOB'];
+        $query = "INSERT INTO applied_for (username, name, dob) 
+                    VALUES (:username, :name, :dob)";
+        $statement = $db->prepare($query);
+        $statement->bindValue(':username', $username);
+        $statement->bindValue(':name', $name);
+        $statement->bindValue(':dob', $dob);
+        $statement->execute();
+        $statement->closeCursor();
+        echo "<script>
+                alert('Application sent');
+                window.location.href='pets.php';
+                </script>";
+        
+    }
     if (!empty($_POST['action']) && ($_POST['action'] == 'Favorite')) {
         $username = $_SESSION['user'];
         $name = $_POST['pName2'];
@@ -213,6 +231,17 @@ if (isset($_SESSION['user'])) {
                 echo '<form action="' . htmlspecialchars($_SERVER["PHP_SELF"]) . '"method="post">';
                 echo "<div style='text-align:center; margin-right: 1vw;'>";
                 echo '<input type="submit" value="Update" name="action" class="btn btn-primary" />';
+                echo '<input type="hidden" name="pName" value="' . $row['name'] . '" />';
+                echo '<input type="hidden" name="pDOB" value="' . $row['dob'] . '" />';
+                echo "</div>";
+                echo "</form>";
+            }
+            elseif($loggedIn)
+            {
+                echo "<p class='petsinfo'>";
+                echo '<form action="' . htmlspecialchars($_SERVER["PHP_SELF"]) . '"method="post">';
+                echo "<div style='text-align:center; margin-right: 1vw;'>";
+                echo '<input type="submit" value="Apply to Adopt" name="action" class="btn btn-primary" />';
                 echo '<input type="hidden" name="pName" value="' . $row['name'] . '" />';
                 echo '<input type="hidden" name="pDOB" value="' . $row['dob'] . '" />';
                 echo "</div>";

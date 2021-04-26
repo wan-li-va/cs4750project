@@ -4,6 +4,56 @@
     require('connect-db.php');
   ?>
 
+<?php include "./navbar.php"; ?>
+
+<?php
+    //checks that the user is logged in
+    if (isset($_SESSION['user'])){
+        //checks that there is a course set to edit
+        if (!isset($_SESSION['id']))
+        {
+            echo "<script>
+                alert('Nothing to edit, returning home');
+                window.location.href='home.php';
+                </script>";
+        }
+        //checks for post
+        if ($_SERVER["REQUEST_METHOD"] == "POST")
+        {
+            if (!empty($_POST['action']) && ($_POST['action'] == 'Cancel'))
+            {
+                unset($_SESSION['id']);
+                header("Location: admin.php");
+            }
+            else
+            {
+                $query = "UPDATE users SET role=:role
+                    WHERE username=:username";
+                $statement = $db->prepare($query);
+                $statement->bindValue(':role', 'manager');              
+                $statement->bindValue(':username', $_SESSION['id']);
+                $statement->execute();
+                $statement->closeCursor();
+
+                $query = "INSERT INTO employees (username, shelter_name, start_date) 
+                    VALUES (:username, :shelter_name, :start_date)";
+                $statement = $db->prepare($query);
+                $statement->bindValue(':username', $_SESSION['id']);
+                $statement->bindValue(':shelter_name', 'Manager');
+                $statement->bindValue(':start_date', date("Y-m-d"));                
+                $statement->execute();
+                $statement->closeCursor();
+
+                unset($_SESSION['id']);
+                echo "<script>
+                alert('User changed to manager');
+                window.location.href='admin.php';
+                </script>";
+            }
+
+        }
+?>
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- required to handle IE -->
@@ -24,46 +74,6 @@
     <!-- EXTERNAL CSS -->
     <link href="./styles/style.css" rel="stylesheet" type="text/css" />
 </head>
-
-<?php include "./navbar.php"; ?>
-
-<?php
-    //checks that the user is logged in
-    if (isset($_SESSION['user'])){
-        //checks that there is a course set to edit
-        if (!isset($_SESSION['id']))
-        {
-            echo "<script>
-                alert('Nothing to edit, returning home');
-                window.location.href='home.php';
-                </script>";
-        }
-        //checks for post
-        if ($_SERVER["REQUEST_METHOD"] == "POST")
-        {
-            if (!empty($_POST['action']) && ($_POST['action'] == 'Cancel'))
-            {
-                unset($_SESSION['id']);
-                header("Location: home.php");
-            }
-            else
-            {
-                $query = "UPDATE users SET role=:role
-                    WHERE username=:username";
-                $statement = $db->prepare($query);
-                $statement->bindValue(':role', 'manager');
-                $statement->bindValue(':username', $_SESSION['id']);
-                $statement->execute();
-                $statement->closeCursor();
-                unset($_SESSION['id']);
-                echo "<script>
-                alert('User changed to manager');
-                window.location.href='home.php';
-                </script>";
-            }
-
-        }
-?>
 
 <div class="container" style="text-align: center;">
       </br>

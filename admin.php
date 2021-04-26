@@ -133,16 +133,28 @@
                     <?php echo $g['phone_num']; ?> 
                 </td>                 
                 <td>
+                    <?php if($g['role'] != 'manager') :?>
                     <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
                         <input type="submit" value="Update" name="action" class="btn btn-primary" />             
                         <input type="hidden" name="username" value="<?php echo $g['username'] ?>" />
                     </form> 
+                    <?php
+                    else:                    
+                        echo "Is Manager";  
+                    endif; 
+                    ?>
                 </td>  
                 <td>
+                    <?php if($g['role'] != 'employee' && $g['role'] != 'manager') :?>
                     <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
                         <input type="submit" value="Change" name="action" class="btn btn-primary" />             
                         <input type="hidden" name="username" value="<?php echo $g['username'] ?>" />
                     </form> 
+                    <?php
+                    else:                    
+                        echo "Is Employee";  
+                    endif; 
+                    ?>
                 </td>  
                 <td>
                     <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
