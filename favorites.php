@@ -34,13 +34,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
         $name = $_POST['pName2'];
         $dob = $_POST['pDOB2'];
         $image = $_POST['pImg2'];
-        $query = "DELETE FROM favorites WHERE username=:username, name=:name, dob=:dob";
+        $query = "DELETE FROM favorites WHERE username=:username, name=:name, dob=:dob, image=:image";
         $statement = $db->prepare($query);
         $statement->bindValue(':username', $username);
         $statement->bindValue(':name', $name);
-        $statement->bindValue(':dob', $dob);          
+        $statement->bindValue(':dob', $dob);      
+        
+        $statement->bindValue(':image', $image);        
         $statement->execute();
         $statement->closeCursor();
+    
         echo "<script>
         alert('Pet has been deleted from favorites');
         window.location.href='favorites.php';
