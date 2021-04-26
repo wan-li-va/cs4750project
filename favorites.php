@@ -30,19 +30,14 @@ include "./navbar.php";
 if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     if (!empty($_POST['action']) && ($_POST['action'] == 'Delete'))
     {  
-        $username = $_SESSION['user'];
         $name = $_POST['pName2'];
-        $dob = $_POST['pDOB2'];
-        $image = $_POST['pImg2'];
-        $query = "DELETE FROM favorites WHERE username=:username, name=:name, dob=:dob, image=:image";
-        $statement = $db->prepare($query);
-        $statement->bindValue(':username', $username);
-        $statement->bindValue(':name', $name);
-        $statement->bindValue(':dob', $dob);      
         
-        $statement->bindValue(':image', $image);        
+        $query = "DELETE FROM favorites WHERE name=:name";
+        $statement = $db->prepare($query);
+        $statement->bindValue(':name', $name);  
         $statement->execute();
         $statement->closeCursor();
+    
     
         echo "<script>
         alert('Pet has been deleted from favorites');
