@@ -31,25 +31,28 @@
     //checks that the user is logged in
     if (isset($_SESSION['user'])){
         //checks for post
-        if ($_SERVER["REQUEST_METHOD"] == "POST")
-        {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                $pName = $POST['pName2'];
+                $pDOB = $_SESSION['pDOB2'];
+                $pImg = $_SESSION['pImg2'];
+
                 $username = $_SESSION['user'];
-                $name = $_POST['pName'];
-                $dob = $_POST['pDOB'];
-                $image = $_POST['pImg'];
-                $query = "INSERT INTO favorites (name, dob, image) 
-                    VALUES (:name, :dob, :image)";
+                $name = $_POST['pName2'];
+                $dob = $_POST['pDOB2'];
+                $image = $_POST['pImg2'];
+                $query = "INSERT INTO favorites (username, name, dob, image) 
+                    VALUES (:username, :name, :dob, :image)";
                 $statement = $db->prepare($query);
-                $statement->bindValue(':username', $_SESSION['id']);
+                $statement->bindValue(':username', $username);
                 $statement->bindValue(':name', $name);
                 $statement->bindValue(':dob', $dob);                
                 $statement->bindValue(':image', $image);
                 $statement->execute();
                 $statement->closeCursor();
-                unset($_SESSION['id']);
                 echo "<script>
                 alert('Pet added to favorites');
                 window.location.href='pets.php';
                 </script>";
         }
+    }
 ?>
