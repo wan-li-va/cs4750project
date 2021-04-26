@@ -79,7 +79,7 @@ if (isset($_SESSION['user'])) {
         </div>
         <?php
         if ($loggedIn)
-            echo "<div class='admin-buttons'><a class='btn btn-lg' href='favorites.php' style='width: 15vw;'> Your Favorite Pets </a>";
+            echo "<div style='margin-bottom: 3vh;'><a class='btn btn-lg' href='favorites.php' style='width: 15vw;'> Your Favorite Pets </a>";
         ?>
         <!-- <br> -->
         <?php
@@ -112,7 +112,7 @@ if (isset($_SESSION['user'])) {
             // $desciption = $row['desciption'];
             // $ephoto = $row['ephoto'];
             echo "<div class='col-sm-3'>";
-            echo  "<div class='card' style='height: 110vh; margin-bottom: 5vh;'>";
+            echo  "<div class='card' style='height: 110vh; width: 21vw; margin-bottom: 5vh;'>";
             echo  "<div class='card-body'>";
 
             if ($row['image'] != NULL) {
