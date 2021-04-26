@@ -44,7 +44,7 @@
             if (!empty($_POST['action']) && ($_POST['action'] == 'Cancel'))
             {
                 unset($_SESSION['id']);
-                header("Location: home.php");
+                header("Location: admin.php");
             }
             else
             {
@@ -53,6 +53,7 @@
                 $statement->bindParam(':username', $_SESSION['id']);
                 $statement->execute();
                 $user_info = $statement->fetchAll();
+                
                 if(count($user_info) > 0)
                 {
                     $query = "DELETE FROM employees WHERE username=:username";
@@ -60,7 +61,13 @@
                     $statement->bindValue(':username', $_SESSION['id']);
                     $statement->execute();
                     $statement->closeCursor();
-                }                
+                }     
+                
+                $query = "DELETE FROM login WHERE username=:username";
+                $statement = $db->prepare($query);
+                $statement->bindValue(':username', $_SESSION['id']);
+                $statement->execute();
+                $statement->closeCursor();
 
                 $query = "DELETE FROM users WHERE username=:username";
                 $statement = $db->prepare($query);
