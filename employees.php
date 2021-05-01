@@ -121,10 +121,16 @@
                     </form> 
                 </td>  
                 <td>
+                    <?php if($g['username'] !=  $_SESSION['user']) :?>
                     <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
                         <input type="submit" value="Delete" name="action" class="btn btn-primary" />             
                         <input type="hidden" name="username" value="<?php echo $g['username'] ?>" />
                     </form> 
+                    <?php
+                    else:                    
+                        echo "Permission Denied";  
+                    endif; 
+                    ?>
                 </td>                                                      
             </tr>
             <?php endforeach; ?>
