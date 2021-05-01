@@ -71,7 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $favorite_info = $statement->fetchAll();
         $statement->closecursor();
 
-        $output = "<h2>Welcome to Modern Business
+        $output = "<h2>Welcome to Purrfect Pets
             <div class='container'>
             <div class='row'>";
 
