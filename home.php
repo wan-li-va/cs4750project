@@ -27,8 +27,7 @@
       <div class="container">
         <center>
           <h1 class="display-4" style="margin-bottom: 3vh;">Pets Available for Adoption Today</h1>
-          <a class="btn btn-lg" href="" role="button">Find a Dog</a>
-          <a class="btn btn-lg" href="" role="button">Find a Cat</a>
+          <a class="btn btn-lg" href="pets.php" role="button" onclick='<?php $_SESSION['pettype'] = 'any' ?>'>Browse for a friend!</a>
         </center>
       </div>
     </div>

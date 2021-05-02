@@ -140,8 +140,15 @@ if (isset($_SESSION['user'])) {
 
         $type = 'any';
         // echo $_SESSION['query'];
-        if (isset($_SESSION['query'])) {
-            display($db, $_SESSION['query'], $manager, $loggedIn);
+        if (isset($_SESSION['pettype'])) {
+            if ($_SESSION['pettype'] == 'any') {
+                $query = "SELECT * FROM pets ORDER BY name";
+            } else if ($_SESSION['pettype'] == 'dog') {
+                $query = "SELECT * FROM pets WHERE type_of_animal='dog' ORDER BY name";
+            } else {
+                $query = "SELECT * FROM pets WHERE type_of_animal='cat' ORDER BY name";
+            }
+            display($db, $query, $manager, $loggedIn);
         } else {
             $query = "SELECT * FROM pets ORDER BY name";
             display($db, $query, $manager, $loggedIn);
@@ -161,7 +168,7 @@ if (isset($_SESSION['user'])) {
                     $query = "SELECT * FROM pets WHERE type_of_animal='cat' ORDER BY name";
                     $_SESSION['pettype'] = 'cat';
                 }
-                $_SESSION['query'] = $query;
+                // $_SESSION['query'] = $query;
                 // display($db, $query, $manager, $loggedIn);
                 echo "<script> window.location.href='pets.php'; </script>";
             }
