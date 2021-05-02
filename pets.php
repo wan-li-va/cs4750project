@@ -98,19 +98,19 @@ if (isset($_SESSION['user'])) {
             <p style='margin-right: 2vw;'>Filter for: </p>
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method='get'>
                 <div class="form-check" style='margin-right: 1vw;'>
-                    <input class="form-check-input" type="radio" name="pettype" value='any' id="pettype" checked>
+                    <input class="form-check-input" type="radio" name="pettype" value='any' id="any" checked>
                     <label class="form-check-label" for="any">
                         Any
                     </label>
                 </div>
                 <div class="form-check" style='margin-right: 1vw;'>
-                    <input class="form-check-input" type="radio" name="pettype" value='dogs' id="pettype">
+                    <input class="form-check-input" type="radio" name="pettype" value='dogs' id="dogs">
                     <label class="form-check-label" for="dogs">
                         Dogs
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="pettype" value='cats' id="pettype">
+                    <input class="form-check-input" type="radio" name="pettype" value='cats' id="cats">
                     <label class="form-check-label" for="cats">
                         Cats
                     </label>
