@@ -96,26 +96,26 @@ if (isset($_SESSION['user'])) {
 
         <div class='pet-type' style='display: flex; flex-direction: row;'>
             <p style='margin-right: 2vw;'>Filter for: </p>
-            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method='get'>
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method='post'>
                 <div class="form-check" style='margin-right: 1vw;'>
-                    <input class="form-check-input" type="radio" name="pettype" value='any' id="any" checked>
+                    <input class="form-check-input" type="radio" name="pettype" value='any' id="pettype" <?php if (!isset($_SESSION['pettype']) || $_SESSION['pettype'] == 'any') echo 'checked' ?>>
                     <label class="form-check-label" for="any">
                         Any
                     </label>
                 </div>
                 <div class="form-check" style='margin-right: 1vw;'>
-                    <input class="form-check-input" type="radio" name="pettype" value='dogs' id="dogs">
-                    <label class="form-check-label" for="dogs">
+                    <input class="form-check-input" type="radio" name="pettype" value='dog' id="pettype" <?php if (isset($_SESSION['pettype']) && $_SESSION['pettype'] == 'dog') echo 'checked' ?>>
+                    <label class="form-check-label" for="dog">
                         Dogs
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="pettype" value='cats' id="cats">
-                    <label class="form-check-label" for="cats">
+                    <input class="form-check-input" type="radio" name="pettype" value='cat' id="pettype" <?php if (isset($_SESSION['pettype']) && $_SESSION['pettype'] == 'cat') echo 'checked' ?>>
+                    <label class="form-check-label" for="cat">
                         Cats
                     </label>
                 </div>
-                <input type="hidden" name="type" value="document.getElementById('pettype').value" />
+                <!-- <input type="hidden" name="type" value="document.getElementById('pettype').value" /> -->
                 <input class="btn btn-primary" type="submit" value="choose" name="action" />
             </form>
         </div>
@@ -139,22 +139,31 @@ if (isset($_SESSION['user'])) {
         // Form the SQL query (a SELECT query) 
 
         $type = 'any';
-        $query = "SELECT * FROM pets ORDER BY name";
-        display($db, $query, $manager, $loggedIn);
+        // echo $_SESSION['query'];
+        if (isset($_SESSION['query'])) {
+            display($db, $_SESSION['query'], $manager, $loggedIn);
+        } else {
+            $query = "SELECT * FROM pets ORDER BY name";
+            display($db, $query, $manager, $loggedIn);
+        }
 
-        echo $_GET['type'];
-        if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-            if (!empty($_POST['action'])) {
-                $type = $_GET['type'];
+        // echo $_POST['pettype'];
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            if (!empty($_POST['pettype'])) {
+                $type = $_POST['pettype'];
                 if ($type == 'any') {
                     $query = "SELECT * FROM pets ORDER BY name";
-                } else if ($type == 'dogs') {
-                    $query = "SELECT * FROM pets WHERE type_of_animal='dogs' ORDER BY name";
+                    $_SESSION['pettype'] = 'any';
+                } else if ($type == 'dog') {
+                    $query = "SELECT * FROM pets WHERE type_of_animal='dog' ORDER BY name";
+                    $_SESSION['pettype'] = 'dog';
                 } else {
-                    $query = "SELECT * FROM pets WHERE type_of_animal='cats' ORDER BY name";
+                    $query = "SELECT * FROM pets WHERE type_of_animal='cat' ORDER BY name";
+                    $_SESSION['pettype'] = 'cat';
                 }
-                display($db, $query, $manager, $loggedIn);
-                echo "<script> window.location.href='favorites.php'; </script>";
+                $_SESSION['query'] = $query;
+                // display($db, $query, $manager, $loggedIn);
+                echo "<script> window.location.href='pets.php'; </script>";
             }
         }
 
