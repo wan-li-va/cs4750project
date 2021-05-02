@@ -116,7 +116,7 @@ if (isset($_SESSION['user'])) {
                     </label>
                 </div>
                 <!-- <input type="hidden" name="type" value="document.getElementById('pettype').value" /> -->
-                <input class="btn btn-primary" type="submit" value="choose" name="action" />
+                <input class="btn btn-primary" type="submit" value="choose" name="action" style='margin-bottom: 5vh; margin-top: 1vh;' />
             </form>
         </div>
 
@@ -184,7 +184,7 @@ if (isset($_SESSION['user'])) {
                 // $name = $row['name'];
                 // $desciption = $row['desciption'];
                 // $ephoto = $row['ephoto'];
-                echo "<div class='col-sm-3'>";
+                echo "<div class='col-sm-3' style='width: 80vw;'>";
                 echo  "<div class='card' style='height: 110vh; width: 21vw; margin-bottom: 5vh;'>";
                 echo  "<div class='card-body'>";
 
